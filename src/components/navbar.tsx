@@ -81,8 +81,8 @@ export function Navbar({ banner }: { banner?: React.ReactNode }) {
           <div className="relative flex gap-6">
             <div className="py-3">
               <Link href="/" title="Home">
-                <span className="h3 text-2xl font-regular tracking-tight text-[color:var(--color-deep-steel-blue)] dark:text-white">
-                  <span className="mr-[1px]">⍴</span>rotos systems
+                <span className="h3 text-2xl font-regular tracking-tight text-[color:var(--color-primary)] dark:text-white">
+                  protos systems
                 </span>
               </Link>
             </div>

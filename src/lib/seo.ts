@@ -25,7 +25,7 @@ export function buildPageMetadata({
   const resolvedTitle = title ?? `${SITE_NAME} — ${SITE_TAGLINE}`
 
   return {
-    title,
+    ...(title ? { title } : {}),
     description,
     alternates: {
       canonical,
