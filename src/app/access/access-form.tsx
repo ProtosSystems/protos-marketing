@@ -66,7 +66,7 @@ export function AccessForm() {
         Private Preview Access
       </h1>
       <p className="mt-3 text-sm/6 text-gray-700 dark:text-[color:var(--color-slate-300)]">
-        This site is currently protected while accessibility updates are in progress.
+        This site is temporarily gated while final updates are completed.
       </p>
 
       <form className="mt-8 space-y-5" onSubmit={onSubmit} noValidate>
