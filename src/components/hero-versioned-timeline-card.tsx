@@ -91,19 +91,19 @@ export function HeroVersionedTimelineCard({
             <div className="min-w-0">
               <div className="flex items-center gap-2">
                 <span className="inline-flex h-2.5 w-2.5 rounded-full bg-[#3A4F7A]/70 dark:bg-[#3A4F7A]" />
-                <p className="truncate text-sm font-medium text-slate-700 dark:text-slate-100">
-                  {company} <span className="text-slate-400 dark:text-white/30">·</span>{' '}
-                  <span className="text-slate-600 dark:text-slate-400">{statement}</span>
+                <p className="truncate text-sm font-medium text-slate-800 dark:text-slate-100">
+                  {company} <span className="text-slate-600 dark:text-white/30">·</span>{' '}
+                  <span className="text-slate-700 dark:text-slate-400">{statement}</span>
                 </p>
               </div>
-              <p className="mt-2 text-xs text-slate-500 dark:text-slate-300">
+              <p className="mt-2 text-xs text-slate-700 dark:text-slate-300">
                 Conceptual view of versioned statements (illustrative)
               </p>
             </div>
 
-            <div className="flex shrink-0 items-center gap-2 self-start rounded-full border border-slate-200 bg-white/70 px-3 py-1.5 text-xs text-slate-700 dark:border-white/10 dark:bg-white/5 dark:text-slate-100">
-              <span className="font-mono text-slate-600 dark:text-slate-400">as_of</span>
-              <span className="text-slate-400 dark:text-white/30">=</span>
+            <div className="flex shrink-0 items-center gap-2 self-start rounded-full border border-slate-300 bg-white px-3 py-1.5 text-xs text-slate-800 dark:border-white/10 dark:bg-white/5 dark:text-slate-100">
+              <span className="font-mono text-slate-700 dark:text-slate-400">as_of</span>
+              <span className="text-slate-600 dark:text-white/30">=</span>
               <span className="font-mono font-semibold text-slate-800 dark:text-white">{asOf}</span>
             </div>
           </div>
@@ -112,11 +112,11 @@ export function HeroVersionedTimelineCard({
             <Timeline nodes={nodes} activeIndex={safeActiveIndex} />
           </div>
 
-          <div className="mt-6 rounded-2xl border border-slate-200 bg-white/70 px-4 py-4 dark:border-white/10 dark:bg-white/5">
+          <div className="mt-6 rounded-2xl border border-slate-300 bg-white px-4 py-4 dark:border-white/10 dark:bg-white/5">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <div className="min-w-0">
                 <p className="text-sm font-semibold text-slate-900 dark:text-white">{diff.field}</p>
-                <p className="mt-1 text-xs text-slate-500 dark:text-slate-300">
+                <p className="mt-1 text-xs text-slate-700 dark:text-slate-300">
                   Change captured as a first-class event (not an overwrite)
                 </p>
               </div>
@@ -125,14 +125,14 @@ export function HeroVersionedTimelineCard({
                 <ValuePill label="from" value={diff.from} />
                 <ArrowMark />
                 <ValuePill label="to" value={diff.to} emphasis />
-                <span className="ml-0 inline-flex items-center rounded-full border border-slate-200 bg-white px-2 py-1 text-xs font-medium text-slate-700 sm:ml-2 dark:border-white/10 dark:bg-white/5 dark:text-slate-100">
+                <span className="ml-0 inline-flex items-center rounded-full border border-slate-300 bg-white px-2 py-1 text-xs font-medium text-slate-800 sm:ml-2 dark:border-white/10 dark:bg-white/5 dark:text-slate-100">
                   {diff.note}
                 </span>
               </div>
             </div>
           </div>
 
-          <div className="mt-4 flex flex-wrap gap-2 text-xs text-slate-500 dark:text-slate-300">
+          <div className="mt-4 flex flex-wrap gap-2 text-xs text-slate-700 dark:text-slate-300">
             <MetaChip>Provenance attached</MetaChip>
             <MetaChip>Temporal truth explicit</MetaChip>
             <MetaChip>As-of queries supported</MetaChip>
@@ -208,7 +208,7 @@ function Timeline({
                 x={cx}
                 y={y + 30}
                 textAnchor="middle"
-                className="fill-slate-700 text-[11px] font-semibold dark:fill-slate-100"
+                className="fill-slate-800 text-[11px] font-semibold dark:fill-slate-100"
               >
                 {node.label}
               </text>
@@ -216,7 +216,7 @@ function Timeline({
                 x={cx}
                 y={y + 47}
                 textAnchor="middle"
-                className="fill-slate-500 text-[10px] dark:fill-slate-300"
+                className="fill-slate-700 text-[10px] dark:fill-slate-300"
               >
                 {node.date}
               </text>
@@ -243,10 +243,10 @@ function ValuePill({
         'inline-flex items-center gap-1 rounded-full border px-2 py-1 text-xs',
         emphasis
           ? 'border-[#3A4F7A]/30 bg-[#3A4F7A]/10 text-[#0F172A] dark:border-[#3A4F7A]/40 dark:bg-[#3A4F7A]/20 dark:text-slate-100'
-          : 'border-slate-200 bg-white text-slate-700 dark:border-white/10 dark:bg-white/5 dark:text-slate-100',
+          : 'border-slate-300 bg-white text-slate-800 dark:border-white/10 dark:bg-white/5 dark:text-slate-100',
       ].join(' ')}
     >
-      <span className="font-mono text-[10px] text-slate-500 dark:text-slate-300">{label}</span>
+      <span className="font-mono text-[10px] text-slate-700 dark:text-slate-300">{label}</span>
       <span className="font-mono font-semibold">{value}</span>
     </span>
   )
@@ -260,7 +260,7 @@ function ArrowMark() {
       viewBox="0 0 18 18"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="text-slate-500 dark:text-slate-300"
+      className="text-slate-700 dark:text-slate-300"
       aria-hidden="true"
     >
       <path d="M3 9H14" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
@@ -271,7 +271,7 @@ function ArrowMark() {
 
 function MetaChip({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-flex items-center rounded-full border border-slate-200 bg-white/80 px-2.5 py-1 dark:border-white/10 dark:bg-white/5">
+    <span className="inline-flex items-center rounded-full border border-slate-300 bg-white px-2.5 py-1 text-slate-800 dark:border-white/10 dark:bg-white/5 dark:text-slate-100">
       {children}
     </span>
   )

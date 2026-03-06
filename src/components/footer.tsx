@@ -53,14 +53,14 @@ function CallToAction() {
   return (
     <div className="relative pt-20 pb-16 text-center sm:py-24">
       <hgroup>
-        <p className="font-mono text-xs/5 font-normal tracking-widest text-gray-500 uppercase dark:text-[color:var(--color-soft-gray)]">
+        <p className="font-mono text-xs/5 font-normal tracking-widest text-gray-700 uppercase dark:text-[color:var(--color-soft-gray)]">
           Next steps
         </p>
         <p className="mt-6 text-3xl font-normal tracking-tight text-[color:var(--color-primary)] sm:text-5xl dark:text-white">
           Build on a foundation you can trust.
         </p>
       </hgroup>
-      <p className="mx-auto mt-6 max-w-md text-sm/6 text-gray-500 dark:text-[color:var(--color-soft-gray)]">
+      <p className="mx-auto mt-6 max-w-md text-sm/6 text-gray-700 dark:text-[color:var(--color-soft-gray)]">
         Arche is available to a limited set of design partners building systems
         where financial correctness is non-negotiable.
       </p>
@@ -93,7 +93,7 @@ export function Footer() {
                 <a
                   key={item.name}
                   href={item.href}
-                  className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+                  className="text-gray-800 hover:text-gray-950 dark:text-gray-300 dark:hover:text-white"
                 >
                   {item.name}
                 </a>
@@ -104,14 +104,14 @@ export function Footer() {
                 <a
                   key={item.name}
                   href={item.href}
-                  className="text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white"
+                  className="text-gray-800 hover:text-gray-950 dark:text-gray-300 dark:hover:text-white"
                 >
                   <span className="sr-only">{item.name}</span>
                   <item.icon aria-hidden="true" className="size-6" />
                 </a>
               ))}
             </div>
-            <p className="mt-10 text-center text-sm/6 text-gray-600 dark:text-gray-400">
+            <p className="mt-10 text-center text-sm/6 text-gray-800 dark:text-gray-300">
               &copy; {new Date().getFullYear()} Protos Systems, Inc. All rights
               reserved.
             </p>

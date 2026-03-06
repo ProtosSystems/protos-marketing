@@ -66,17 +66,17 @@ async function FeaturedPosts() {
               className="relative flex flex-col rounded-3xl bg-white p-2 shadow-md ring-1 shadow-black/5 ring-black/5"
             >
               <div className="flex flex-1 flex-col p-8">
-                <div className="text-2xl/8 font-medium tracking-tight text-[color:var(--color-primary)] dark:text-white">
+                <div className="text-2xl/8 font-medium tracking-tight text-[color:var(--color-deep-steel-blue)] dark:text-white">
                   <Link href={`/blog/${post.slug}`}>
                     <span className="absolute inset-0" />
                     {post.title}
                   </Link>
                 </div>
-                <div className="mt-3 text-sm/6 text-gray-500">
+                <div className="mt-3 text-sm/6 text-gray-700">
                   {post.excerpt}
                 </div>
                 {post.categories?.[0] && (
-                  <p className="mt-2 text-sm/6 text-gray-600 dark:text-[color:var(--color-soft-gray)]">
+                  <p className="mt-2 text-sm/6 text-gray-700 dark:text-[color:var(--color-soft-gray)]">
                     Category: {post.categories[0].title}
                   </p>
                 )}
@@ -97,7 +97,7 @@ async function FeaturedPosts() {
                     </div>
                   )}
                 </div>
-                <div className="mt-4 text-sm/5 text-gray-700">
+                <div className="mt-4 text-sm/5 text-gray-800">
                   {dayjs(post.publishedAt).format('dddd, MMMM D, YYYY')}
                 </div>
                 {post.author && (
@@ -109,7 +109,7 @@ async function FeaturedPosts() {
                         className="aspect-square size-6 rounded-full object-cover"
                       />
                     )}
-                    <div className="text-sm/5 text-gray-700">
+                    <div className="text-sm/5 text-gray-800">
                       {post.author.name}
                     </div>
                   </div>
@@ -196,7 +196,7 @@ async function Posts({ page, category }: { page: number; category?: string }) {
   }
 
   if (posts.length === 0) {
-    return <p className="mt-6 text-gray-500">No posts found.</p>
+    return <p className="mt-6 text-gray-700">No posts found.</p>
   }
 
   return (
@@ -215,7 +215,7 @@ async function Posts({ page, category }: { page: number; category?: string }) {
           className="relative grid grid-cols-1 border-b border-b-gray-100 py-10 max-sm:gap-3 sm:grid-cols-3"
         >
           <div>
-            <div className="text-sm/5 max-sm:text-gray-700 sm:font-medium">
+            <div className="text-sm/5 text-gray-800 sm:font-medium">
               {dayjs(post.publishedAt).format('dddd, MMMM D, YYYY')}
             </div>
             {post.author && (
@@ -227,17 +227,17 @@ async function Posts({ page, category }: { page: number; category?: string }) {
                     className="aspect-square size-6 rounded-full object-cover"
                   />
                 )}
-                <div className="text-sm/5 text-gray-700">{post.author.name}</div>
+                <div className="text-sm/5 text-gray-800">{post.author.name}</div>
               </div>
             )}
           </div>
           <div className="sm:col-span-2 sm:max-w-2xl">
-            <h2 className="text-2xl/8 font-medium tracking-tight text-[color:var(--color-primary)] dark:text-white">
+            <h2 className="text-2xl/8 font-medium tracking-tight text-[color:var(--color-deep-steel-blue)] dark:text-white">
               {post.title}
             </h2>
-            <p className="mt-3 text-sm/6 text-gray-500">{post.excerpt}</p>
+            <p className="mt-3 text-sm/6 text-gray-700">{post.excerpt}</p>
             {post.categories?.[0] && (
-              <p className="mt-2 text-sm/6 text-gray-600 dark:text-[color:var(--color-soft-gray)]">
+              <p className="mt-2 text-sm/6 text-gray-700 dark:text-[color:var(--color-soft-gray)]">
                 Category: {post.categories[0].title}
               </p>
             )}
@@ -261,7 +261,7 @@ async function Posts({ page, category }: { page: number; category?: string }) {
             <div className="mt-4">
               <Link
                 href={`/blog/${post.slug}`}
-                className="flex items-center gap-1 text-sm/5 font-medium"
+                className="flex items-center gap-1 text-sm/5 font-medium text-[color:var(--color-deep-steel-blue)] hover:text-gray-900 dark:text-white dark:hover:text-gray-100"
               >
                 <span className="absolute inset-0" />
                 Read more
