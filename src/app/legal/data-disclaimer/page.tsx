@@ -3,6 +3,7 @@ import { LegalPageShell, buildLegalMetadata } from '../legal-page-shell'
 export const metadata = buildLegalMetadata(
   'Financial Data Disclaimer',
   'Limitations and intended use of financial data provided by Protos Systems.',
+  '/legal/data-disclaimer',
 )
 
 export default function DataDisclaimerPage() {
@@ -28,4 +29,3 @@ export default function DataDisclaimerPage() {
     </LegalPageShell>
   )
 }
-

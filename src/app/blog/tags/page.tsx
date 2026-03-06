@@ -1,5 +1,6 @@
 import { Container } from '@/components/container'
 import { Link } from '@/components/link'
+import { buildPageMetadata } from '@/lib/seo'
 import { getTags } from '@/sanity/queries'
 import type { Metadata } from 'next'
 
@@ -9,10 +10,11 @@ type TagRecord = {
   count: number | null
 }
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
+  path: '/blog/tags',
   title: 'Blog Tags',
   description: 'Browse posts by tag.',
-}
+})
 
 export default async function BlogTagsPage() {
   const { data: tags } = await getTags()

@@ -3,6 +3,7 @@ import { LegalPageShell, buildLegalMetadata } from '../legal-page-shell'
 export const metadata = buildLegalMetadata(
   'Privacy Policy',
   'How Protos Systems collects and processes personal information.',
+  '/legal/privacy',
 )
 
 export default function PrivacyPage() {
@@ -67,4 +68,3 @@ export default function PrivacyPage() {
     </LegalPageShell>
   )
 }
-

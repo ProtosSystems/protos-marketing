@@ -3,6 +3,7 @@ import { BlogFallbackVisual } from '@/components/blog-fallback-visual'
 import { Container } from '@/components/container'
 import { Link } from '@/components/link'
 import { Heading, Subheading } from '@/components/text'
+import { SITE_NAME, SITE_URL } from '@/lib/site'
 import { image } from '@/sanity/image'
 import { getPost } from '@/sanity/queries'
 import { ChevronLeftIcon } from '@heroicons/react/16/solid'
@@ -18,7 +19,41 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   let { data: post } = await getPost((await params).slug)
 
-  return post ? { title: post.title, description: post.excerpt } : {}
+  if (!post) return {}
+
+  const canonicalPath = `/blog/${post.slug}`
+  const socialImage = post.mainImage
+    ? image(post.mainImage).size(1200, 630).format('jpg').url()
+    : `${SITE_URL}/protos-og.png`
+
+  return {
+    title: post.title,
+    description: post.excerpt,
+    alternates: {
+      canonical: canonicalPath,
+    },
+    openGraph: {
+      type: 'article',
+      siteName: SITE_NAME,
+      title: post.title,
+      description: post.excerpt,
+      url: canonicalPath,
+      publishedTime: post.publishedAt,
+      authors: post.author?.name ? [post.author.name] : undefined,
+      tags: Array.isArray(post.tags)
+        ? post.tags
+            .map((tag: { title?: string | null }) => tag?.title)
+            .filter((title: string | null | undefined): title is string => typeof title === 'string')
+        : undefined,
+      images: [{ url: socialImage }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.excerpt,
+      images: [socialImage],
+    },
+  }
 }
 
 export default async function BlogPost({
@@ -28,9 +63,45 @@ export default async function BlogPost({
 }) {
   let { data: post } = await getPost((await params).slug)
   if (!post) notFound()
+  const canonicalUrl = `${SITE_URL}/blog/${post.slug}`
+  const articleLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    description: post.excerpt,
+    url: canonicalUrl,
+    datePublished: post.publishedAt,
+    dateModified: post.publishedAt,
+    author: post.author?.name
+      ? {
+          '@type': 'Person',
+          name: post.author.name,
+        }
+      : {
+          '@type': 'Organization',
+          name: SITE_NAME,
+        },
+    publisher: {
+      '@type': 'Organization',
+      name: SITE_NAME,
+      url: SITE_URL,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${SITE_URL}/android-chrome-512x512.png`,
+      },
+    },
+    image: post.mainImage
+      ? image(post.mainImage).size(1200, 630).format('jpg').url()
+      : `${SITE_URL}/protos-og.png`,
+    mainEntityOfPage: canonicalUrl,
+  }
 
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }}
+      />
       <div className="relative border-b border-[color:var(--color-soft-gray)] bg-gray-100 dark:border-white/10 dark:bg-[color:var(--color-primary)]">
         <Container className="relative">
           <div className="py-16 sm:py-20 md:py-24">

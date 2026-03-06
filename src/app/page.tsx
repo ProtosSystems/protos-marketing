@@ -12,11 +12,13 @@ import {
 } from '@heroicons/react/20/solid'
 import type { Metadata } from 'next'
 import { ArcheOrbitVisual } from '@/components/arche-orbit-visual'
+import { buildPageMetadata } from '@/lib/seo'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
+  path: '/',
   description:
     'Protos Systems builds financial data infrastructure from first principles.',
-}
+})
 
 const features = [
   {

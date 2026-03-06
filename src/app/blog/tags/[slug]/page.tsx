@@ -1,5 +1,6 @@
 import { Container } from '@/components/container'
 import { Link } from '@/components/link'
+import { buildPageMetadata } from '@/lib/seo'
 import { getPostsByTag, getTags } from '@/sanity/queries'
 import dayjs from 'dayjs'
 import type { Metadata } from 'next'
@@ -25,10 +26,11 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>
 }): Promise<Metadata> {
   const slug = (await params).slug
-  return {
+  return buildPageMetadata({
+    path: `/blog/tags/${slug}`,
     title: `Tag: ${slug}`,
     description: `Posts tagged with ${slug}.`,
-  }
+  })
 }
 
 export default async function BlogTagPage({

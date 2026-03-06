@@ -1,11 +1,17 @@
 import { Container } from '@/components/container'
+import { buildPageMetadata } from '@/lib/seo'
 import type { Metadata } from 'next'
 
-export function buildLegalMetadata(title: string, description: string): Metadata {
-  return {
+export function buildLegalMetadata(
+  title: string,
+  description: string,
+  path: string,
+): Metadata {
+  return buildPageMetadata({
+    path,
     title,
     description,
-  }
+  })
 }
 
 export function LegalPageShell({
@@ -39,4 +45,3 @@ export function LegalPageShell({
     </main>
   )
 }
-

@@ -9,6 +9,11 @@ export function GET() {
     '## Canonical Links',
     `- Website: ${SITE_URL}`,
     `- Blog: ${SITE_URL}/blog`,
+    `- Sitemap: ${SITE_URL}/sitemap.xml`,
+    `- Robots: ${SITE_URL}/robots.txt`,
+    `- RSS: ${SITE_URL}/blog/feed.xml`,
+    `- About: ${SITE_URL}/about`,
+    `- Legal: ${SITE_URL}/legal`,
     '- Arche docs: https://docs.arche.fi',
     '- Arche access: https://arche.fi/request-access',
   ].join('\n')

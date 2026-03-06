@@ -4,6 +4,7 @@ import { LegalPageShell, buildLegalMetadata } from './legal-page-shell'
 export const metadata = buildLegalMetadata(
   'Legal',
   'Legal policies for Protos Systems and Arche API access.',
+  '/legal',
 )
 
 export default function LegalPage() {
@@ -58,4 +59,3 @@ export default function LegalPage() {
     </LegalPageShell>
   )
 }
-

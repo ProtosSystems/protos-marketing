@@ -3,6 +3,7 @@ import { LegalPageShell, buildLegalMetadata } from '../legal-page-shell'
 export const metadata = buildLegalMetadata(
   'Terms of Service',
   'Terms governing use of Protos Systems services and APIs.',
+  '/legal/terms',
 )
 
 export default function TermsPage() {

@@ -16,6 +16,7 @@ npm install
 - `NEXT_PUBLIC_SANITY_PROJECT_ID`
 - `NEXT_PUBLIC_SANITY_DATASET`
 - optional: `NEXT_PUBLIC_SANITY_API_VERSION`
+- optional: `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` (for Search Console ownership tag)
 
 3. Start dev server:
 

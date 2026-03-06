@@ -7,13 +7,15 @@ import {
   NewspaperIcon,
   LinkIcon,
 } from '@heroicons/react/20/solid'
+import { buildPageMetadata } from '@/lib/seo'
 import type { Metadata } from 'next'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
+  path: '/about',
   title: 'About Protos Systems',
   description:
     'Financial data infrastructure for modern software built on deterministic datasets and point-in-time correctness.',
-}
+})
 
 const engineeringPrinciples = [
   {

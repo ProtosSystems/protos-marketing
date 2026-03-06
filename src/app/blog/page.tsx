@@ -24,12 +24,14 @@ import { clsx } from 'clsx'
 import dayjs from 'dayjs'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
+import { buildPageMetadata } from '@/lib/seo'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
+  path: '/blog',
   title: 'Blog',
   description:
     'Product updates, technical notes, and company announcements from Protos Systems.',
-}
+})
 
 const postsPerPage = 5
 type SanityImageRef = {
