@@ -1,0 +1,52 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: Switzer, system-ui, sans-serif;
+
+  --radius-4xl: 2rem;
+
+  /* Protos Brand Color System */
+  --color-primary: #0f172a; /* Protos Navy */
+  --color-protos-navy: #0f172a;
+  --color-deep-steel-blue: #1b3a64;
+  --color-slate-blue: #3a4f7a;
+  --color-soft-gray: #e5e7eb;
+  --color-charcoal: #111827;
+  --color-pure-white: #ffffff;
+
+  /* UI neutrals for theme toggle */
+  --color-mist-200: #e2e8f0;
+  --color-mist-300: #cbd5e1;
+  --color-mist-700: #374151;
+  --color-mist-800: #1f2937;
+  --color-mist-900: #111827;
+  --color-mist-950: #0b0f1a;
+  --color-slate-100: #f1f5f9;
+  --color-slate-300: #cbd5e1;
+  --color-slate-700: #334155;
+}
+
+@layer base {
+  html,
+  body {
+    font-family: Switzer, system-ui, sans-serif;
+  }
+}
+
+@layer utilities {
+  .font-display,
+  .font-mono {
+    font-family: Switzer, system-ui, sans-serif !important;
+  }
+}
+
+@keyframes move-x {
+  0% {
+    transform: translateX(var(--move-x-from));
+  }
+  100% {
+    transform: translateX(var(--move-x-to));
+  }
+}
