@@ -8,6 +8,7 @@ import {
   SOCIAL_PROFILES,
 } from '@/lib/site'
 import '@/styles/tailwind.css'
+import { Analytics } from '@vercel/analytics/react'
 import type { Metadata } from 'next'
 import Script from 'next/script'
 
@@ -119,6 +120,7 @@ export default function RootLayout({
           />
         </noscript>
         {children}
+        <Analytics />
         <SanityLive revalidateSyncTags={revalidateSyncTags} />
       </body>
     </html>
