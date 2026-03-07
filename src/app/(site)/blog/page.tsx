@@ -212,14 +212,14 @@ async function Posts({ page, category }: { page: number; category?: string }) {
         author?: { name?: string; image?: SanityImageRef | null }
         categories?: { title: string; slug: string }[]
       }) => (
-        <div
+        <article
           key={post.slug}
-          className="relative grid grid-cols-1 border-b border-b-gray-100 py-10 max-sm:gap-3 sm:grid-cols-3"
+          className="grid grid-cols-1 border-b border-b-gray-200 py-10 max-sm:gap-3 sm:grid-cols-3"
         >
           <div>
-            <div className="text-sm/5 text-gray-900 sm:font-medium dark:text-white">
+            <p className="text-sm/5 font-medium text-gray-900 dark:text-white">
               {dayjs(post.publishedAt).format('dddd, MMMM D, YYYY')}
-            </div>
+            </p>
             {post.author && (
               <div className="mt-2.5 flex items-center gap-3">
                 {post.author.image && (
@@ -229,15 +229,15 @@ async function Posts({ page, category }: { page: number; category?: string }) {
                     className="aspect-square size-6 rounded-full object-cover"
                   />
                 )}
-                <div className="text-sm/5 text-gray-900 dark:text-[color:var(--color-soft-gray)]">
+                <p className="text-sm/5 text-gray-900 dark:text-[color:var(--color-soft-gray)]">
                   {post.author.name}
-                </div>
+                </p>
               </div>
             )}
           </div>
           <div className="sm:col-span-2 sm:max-w-2xl">
-            <h2 className="text-2xl/8 font-medium tracking-tight text-[color:var(--color-primary)] dark:text-white">
-              {post.title}
+            <h2 className="text-2xl/8 font-semibold tracking-tight text-gray-950 dark:text-white">
+              <Link href={`/blog/${post.slug}`}>{post.title}</Link>
             </h2>
             <p className="mt-3 text-sm/6 text-gray-900 dark:text-[color:var(--color-soft-gray)]">
               {post.excerpt}
@@ -252,14 +252,14 @@ async function Posts({ page, category }: { page: number; category?: string }) {
                 <img
                   alt={post.mainImage.alt || ''}
                   src={image(post.mainImage).size(960, 640).url()}
-                  className={`${usesWhyArcheExistsVisual(post.slug) ? 'aspect-[20/7]' : 'aspect-3/2'} w-full object-cover`}
+                  className="aspect-3/2 w-full object-cover"
                 />
               ) : (
-                <div
-                  className={`${usesWhyArcheExistsVisual(post.slug) ? 'aspect-[20/7]' : 'aspect-3/2'} w-full`}
-                >
+                <div className="aspect-3/2 w-full bg-white dark:bg-[color:var(--color-protos-navy)]">
                   <div className="flex h-full items-center justify-center">
-                    <BlogFallbackVisual slug={post.slug} compact />
+                    <p className="text-sm font-medium text-gray-900 dark:text-white">
+                      Protos Systems article preview
+                    </p>
                   </div>
                 </div>
               )}
@@ -267,15 +267,13 @@ async function Posts({ page, category }: { page: number; category?: string }) {
             <div className="mt-4">
               <Link
                 href={`/blog/${post.slug}`}
-                className="flex items-center gap-1 text-sm/5 font-medium text-[color:var(--color-primary)] hover:text-gray-950 dark:text-white dark:hover:text-gray-100"
+                className="text-sm/5 font-semibold text-gray-950 underline decoration-gray-400 underline-offset-4 hover:decoration-gray-700 dark:text-white dark:decoration-gray-500 dark:hover:decoration-gray-300"
               >
-                <span className="absolute inset-0" />
                 Read more
-                <ChevronRightIcon className="size-4 fill-gray-400" />
               </Link>
             </div>
           </div>
-        </div>
+        </article>
       ))}
     </div>
   )

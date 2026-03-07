@@ -11,7 +11,6 @@ import {
   Squares2X2Icon,
 } from '@heroicons/react/20/solid'
 import type { Metadata } from 'next'
-import { ArcheOrbitVisual } from '@/components/arche-orbit-visual'
 import { buildPageMetadata } from '@/lib/seo'
 
 export const metadata: Metadata = buildPageMetadata({
@@ -157,7 +156,18 @@ function WorkflowSection() {
               </dl>
             </div>
           </div>
-          <ArcheOrbitVisual />
+          <div className="rounded-3xl border border-[color:var(--color-soft-gray)] bg-white p-8 shadow-sm dark:border-white/10 dark:bg-[color:var(--color-protos-navy)]">
+            <p className="text-sm/6 font-medium tracking-wide text-[color:var(--color-deep-steel-blue)] uppercase dark:text-[color:var(--color-soft-gray)]">
+              Arche Model
+            </p>
+            <h3 className="mt-3 text-2xl font-semibold tracking-tight text-gray-950 dark:text-white">
+              Versioned financial assertions
+            </h3>
+            <p className="mt-4 text-base/7 text-gray-900 dark:text-[color:var(--color-soft-gray)]">
+              Arche preserves filing revisions, provenance, and point-in-time truth so downstream
+              systems can query financial data without silent historical drift.
+            </p>
+          </div>
         </div>
       </Container>
     </div>
