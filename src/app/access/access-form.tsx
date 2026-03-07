@@ -58,7 +58,7 @@ export function AccessForm() {
     <div className="rounded-3xl border border-[color:var(--color-soft-gray)] bg-white p-8 shadow-xl dark:border-white/10 dark:bg-[color:var(--color-protos-navy)]">
       <div className="inline-flex items-center">
         <span className="text-2xl tracking-tight text-[color:var(--color-primary)] dark:text-white">
-          protos systems
+          ⍴rotos systems
         </span>
       </div>
 
