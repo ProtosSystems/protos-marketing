@@ -1,8 +1,5 @@
 import { SanityLive } from '@/sanity/live'
 import { revalidateSyncTags } from '@/sanity/revalidateSyncTags'
-import { Footer } from '@/components/footer'
-import { Navbar } from '@/components/navbar'
-import { ThemeProvider } from '@/components/theme-provider'
 import {
   SITE_DESCRIPTION,
   SITE_NAME,
@@ -121,11 +118,7 @@ export default function RootLayout({
             style={{ display: 'none', visibility: 'hidden' }}
           />
         </noscript>
-        <ThemeProvider>
-          <Navbar />
-          {children}
-          <Footer />
-        </ThemeProvider>
+        {children}
         <SanityLive revalidateSyncTags={revalidateSyncTags} />
       </body>
     </html>
