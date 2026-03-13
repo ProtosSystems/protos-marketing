@@ -8,7 +8,6 @@ import { Link } from '@/components/link'
 import { image } from '@/sanity/image'
 import {
   getCategories,
-  getFeaturedPosts,
   getPosts,
   getPostsCount,
 } from '@/sanity/queries'
@@ -34,96 +33,12 @@ export const metadata: Metadata = buildPageMetadata({
 })
 
 const postsPerPage = 5
+
 type SanityImageRef = {
   asset?: {
     _ref?: string
   }
   alt?: string
-}
-
-async function FeaturedPosts() {
-  let { data: featuredPosts } = await getFeaturedPosts(3)
-
-  if (featuredPosts.length === 0) {
-    return
-  }
-
-  return (
-    <div className="pt-14 pb-14">
-      <Container>
-        <h2 className="text-2xl font-medium tracking-tight">Featured</h2>
-        <div className="mt-6 grid grid-cols-1 gap-8 lg:grid-cols-3">
-          {featuredPosts.map(
-            (post: {
-              title: string
-              slug: string
-              publishedAt: string
-              mainImage?: { alt?: string }
-              excerpt: string
-              categories?: { title: string; slug: string }[]
-              author?: { name?: string; image?: SanityImageRef | null }
-            }) => (
-            <div
-              key={post.slug}
-              className="relative flex flex-col rounded-3xl bg-white p-2 shadow-md ring-1 shadow-black/5 ring-black/5"
-            >
-              <div className="flex flex-1 flex-col p-8">
-                <div className="text-2xl/8 font-medium tracking-tight text-[color:var(--color-primary)] dark:text-white">
-                  <Link href={`/blog/${post.slug}`}>
-                    <span className="absolute inset-0" />
-                    {post.title}
-                  </Link>
-                </div>
-                <div className="mt-3 text-sm/6 text-gray-900 dark:text-[color:var(--color-soft-gray)]">
-                  {post.excerpt}
-                </div>
-                {post.categories?.[0] && (
-                  <p className="mt-2 text-sm/6 text-gray-900 dark:text-[color:var(--color-soft-gray)]">
-                    Category: {post.categories[0].title}
-                  </p>
-                )}
-                <div className="mt-5 overflow-hidden rounded-2xl border border-[color:var(--color-soft-gray)] bg-gray-100 dark:border-white/10 dark:bg-[color:var(--color-primary)]">
-                  {post.mainImage ? (
-                    <img
-                      alt={post.mainImage.alt || ''}
-                      src={image(post.mainImage).size(1170, 780).url()}
-                      className={`${usesWhyArcheExistsVisual(post.slug) ? 'aspect-[20/7]' : 'aspect-3/2'} w-full object-cover`}
-                    />
-                  ) : (
-                    <div
-                      className={`${usesWhyArcheExistsVisual(post.slug) ? 'aspect-[20/7]' : 'aspect-3/2'} w-full`}
-                    >
-                      <div className="flex h-full items-center justify-center">
-                        <BlogFallbackVisual slug={post.slug} compact />
-                      </div>
-                    </div>
-                  )}
-                </div>
-                <div className="mt-4 text-sm/5 text-gray-900 dark:text-white">
-                  {dayjs(post.publishedAt).format('dddd, MMMM D, YYYY')}
-                </div>
-                {post.author && (
-                  <div className="mt-3 flex items-center gap-3">
-                    {post.author.image && (
-                      <img
-                        alt=""
-                        src={image(post.author.image).size(64, 64).url()}
-                        className="aspect-square size-6 rounded-full object-cover"
-                      />
-                    )}
-                    <div className="text-sm/5 text-gray-900 dark:text-[color:var(--color-soft-gray)]">
-                      {post.author.name}
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-            ),
-          )}
-        </div>
-      </Container>
-    </div>
-  )
 }
 
 async function Categories({ selected }: { selected?: string }) {
@@ -252,14 +167,14 @@ async function Posts({ page, category }: { page: number; category?: string }) {
                 <img
                   alt={post.mainImage.alt || ''}
                   src={image(post.mainImage).size(960, 640).url()}
-                  className="aspect-3/2 w-full object-cover"
+                  className={`${usesWhyArcheExistsVisual(post.slug) ? 'aspect-[20/7]' : 'aspect-3/2'} w-full object-cover`}
                 />
               ) : (
-                <div className="aspect-3/2 w-full bg-white dark:bg-[color:var(--color-protos-navy)]">
+                <div
+                  className={`${usesWhyArcheExistsVisual(post.slug) ? 'aspect-[20/7]' : 'aspect-3/2'} w-full`}
+                >
                   <div className="flex h-full items-center justify-center">
-                    <p className="text-sm font-medium text-gray-900 dark:text-white">
-                      Protos Systems article preview
-                    </p>
+                    <BlogFallbackVisual slug={post.slug} compact />
                   </div>
                 </div>
               )}
@@ -377,8 +292,7 @@ export default async function Blog({
       </div>
 
       <div className="bg-white dark:bg-[color:var(--color-primary)]">
-        {page === 1 && !category && <FeaturedPosts />}
-        <Container className={page === 1 && !category ? 'pt-12 pb-24' : 'py-16 pb-24'}>
+        <Container className="py-16 pb-24">
           <Categories selected={category} />
           <Posts page={page} category={category} />
           <Pagination page={page} category={category} />

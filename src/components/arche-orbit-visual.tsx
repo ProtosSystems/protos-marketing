@@ -24,7 +24,7 @@ export function ArcheOrbitVisual() {
               <div className="flex items-center justify-center rounded-l-full bg-red-500 p-1 text-xs ring-1 ring-gray-200">
                 <RiCircleLine className="size-3 shrink-0 text-white" />
               </div>
-              <div className="rounded-r-full bg-white py-0.5 pr-1.5 pl-1 text-sm font-semibold whitespace-nowrap text-[#0B1220] ring-1 ring-gray-300 dark:bg-[#0B1F3B] dark:text-[#F1F5F9]">
+              <div className="rounded-r-full bg-white py-0.5 pr-1.5 pl-1 text-sm font-normal whitespace-nowrap text-[#0B1220] ring-1 ring-gray-300 dark:bg-[#0B1F3B] dark:text-[#F1F5F9]">
                 Restated
               </div>
             </div>
@@ -45,7 +45,7 @@ export function ArcheOrbitVisual() {
               <div className="flex items-center justify-center rounded-l-full bg-gray-500 p-1 text-xs ring-1 ring-gray-200">
                 <RiTimelineView className="size-3 shrink-0 text-white" />
               </div>
-              <div className="rounded-r-full bg-white py-0.5 pr-1.5 pl-1 text-xs font-semibold leading-4 whitespace-nowrap text-[#0B1220] ring-1 ring-gray-300 dark:bg-[#0B1F3B] dark:text-[#F1F5F9]">
+              <div className="rounded-r-full bg-white py-0.5 pr-1.5 pl-1 text-xs font-normal leading-4 whitespace-nowrap text-[#0B1220] ring-1 ring-gray-300 dark:bg-[#0B1F3B] dark:text-[#F1F5F9]">
                 Temporal
               </div>
             </div>
@@ -76,7 +76,7 @@ export function ArcheOrbitVisual() {
               <div className="flex items-center justify-center rounded-l-full bg-emerald-500 p-1 text-xs ring-1 ring-gray-200">
                 <RiCheckLine className="size-3 shrink-0 text-white" />
               </div>
-              <div className="rounded-r-full bg-white py-0.5 pr-1.5 pl-1 text-sm font-semibold text-[#0B1220] ring-1 ring-gray-300 dark:bg-[#0B1F3B] dark:text-[#F1F5F9]">
+              <div className="rounded-r-full bg-white py-0.5 pr-1.5 pl-1 text-sm font-normal text-[#0B1220] ring-1 ring-gray-300 dark:bg-[#0B1F3B] dark:text-[#F1F5F9]">
                 Reconciled
               </div>
             </div>

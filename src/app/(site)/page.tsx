@@ -1,4 +1,5 @@
 import { Button } from '@/components/button'
+import { ArcheOrbitVisual } from '@/components/arche-orbit-visual'
 import { Container } from '@/components/container'
 import { Link } from '@/components/link'
 import {
@@ -156,18 +157,7 @@ function WorkflowSection() {
               </dl>
             </div>
           </div>
-          <div className="rounded-3xl border border-[color:var(--color-soft-gray)] bg-white p-8 shadow-sm dark:border-white/10 dark:bg-[color:var(--color-protos-navy)]">
-            <p className="text-sm/6 font-medium tracking-wide text-[color:var(--color-deep-steel-blue)] uppercase dark:text-[color:var(--color-soft-gray)]">
-              Arche Model
-            </p>
-            <h3 className="mt-3 text-2xl font-semibold tracking-tight text-gray-950 dark:text-white">
-              Versioned financial assertions
-            </h3>
-            <p className="mt-4 text-base/7 text-gray-900 dark:text-[color:var(--color-soft-gray)]">
-              Arche preserves filing revisions, provenance, and point-in-time truth so downstream
-              systems can query financial data without silent historical drift.
-            </p>
-          </div>
+          <ArcheOrbitVisual />
         </div>
       </Container>
     </div>

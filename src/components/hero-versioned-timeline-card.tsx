@@ -43,8 +43,8 @@ export function HeroVersionedTimelineCard({
   const safeActiveIndex = activeIndex === -1 ? 0 : activeIndex
 
   return (
-    <div className={className}>
-      <div className="relative">
+    <div className={['h-full', className].filter(Boolean).join(' ')}>
+      <div className="relative h-full">
         {includeLocalPattern ? (
           <div
             aria-hidden="true"
@@ -81,7 +81,7 @@ export function HeroVersionedTimelineCard({
           </div>
         ) : null}
 
-        <div className="relative w-full rounded-3xl border border-slate-200/70 bg-white/85 p-4 shadow-[0_20px_60px_-35px_rgba(15,23,42,0.45)] backdrop-blur md:p-5 dark:border-white/10 dark:bg-[#0F172A]/80 dark:shadow-[0_20px_60px_-35px_rgba(0,0,0,0.55)]">
+        <div className="relative flex h-full w-full flex-col justify-center rounded-3xl border border-slate-200/70 bg-white/95 p-4 shadow-[0_20px_60px_-35px_rgba(15,23,42,0.45)] backdrop-blur md:p-5 dark:border-white/10 dark:bg-[#0F172A]/92 dark:shadow-[0_20px_60px_-35px_rgba(0,0,0,0.55)]">
           <div
             aria-hidden="true"
             className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-inset ring-slate-900/5 dark:ring-white/10"

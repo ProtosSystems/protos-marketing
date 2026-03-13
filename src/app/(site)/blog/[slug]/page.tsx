@@ -1,5 +1,8 @@
 import { Button } from '@/components/button'
-import { BlogFallbackVisual } from '@/components/blog-fallback-visual'
+import {
+  BlogFallbackVisual,
+  usesTimelineVisual,
+} from '@/components/blog-fallback-visual'
 import { Container } from '@/components/container'
 import { Link } from '@/components/link'
 import { Heading, Subheading } from '@/components/text'
@@ -168,7 +171,14 @@ export default async function BlogPost({
                   />
                 )}
                 {!post.mainImage && (
-                  <div className="mb-10 aspect-3/2 overflow-hidden rounded-2xl border border-[color:var(--color-soft-gray)] bg-gray-100 shadow-xl dark:border-white/10 dark:bg-[color:var(--color-primary)]">
+                  <div
+                    className={[
+                      'mb-10 aspect-3/2 overflow-hidden rounded-2xl border shadow-xl',
+                      usesTimelineVisual(post.slug)
+                        ? 'border-slate-200 bg-white dark:border-white/10 dark:bg-[#0F172A]'
+                        : 'border-[color:var(--color-soft-gray)] bg-gray-100 dark:border-white/10 dark:bg-[color:var(--color-primary)]',
+                    ].join(' ')}
+                  >
                     <div className="flex h-full items-center justify-center">
                       <BlogFallbackVisual slug={post.slug} />
                     </div>
