@@ -47,24 +47,29 @@ function MobileNavButton() {
 function MobileNav() {
   return (
     <DisclosurePanel className="lg:hidden">
+      <Container>
         <div className="flex flex-col gap-6 py-4">
           {links.map(({ href, label }, linkIndex) => (
-          <motion.div
-            initial={{ opacity: 0, rotateX: -90 }}
-            animate={{ opacity: 1, rotateX: 0 }}
-            transition={{
-              duration: 0.15,
-              ease: 'easeInOut',
-              rotateX: { duration: 0.3, delay: linkIndex * 0.1 },
-            }}
-            key={href}
-          >
-            <Link href={href} className="text-base font-normal text-gray-950 dark:text-white">
-              {label}
-            </Link>
-          </motion.div>
-        ))}
-      </div>
+            <motion.div
+              initial={{ opacity: 0, rotateX: -90 }}
+              animate={{ opacity: 1, rotateX: 0 }}
+              transition={{
+                duration: 0.15,
+                ease: 'easeInOut',
+                rotateX: { duration: 0.3, delay: linkIndex * 0.1 },
+              }}
+              key={href}
+            >
+              <Link
+                href={href}
+                className="text-base font-normal text-gray-950 dark:text-white"
+              >
+                {label}
+              </Link>
+            </motion.div>
+          ))}
+        </div>
+      </Container>
     </DisclosurePanel>
   )
 }
