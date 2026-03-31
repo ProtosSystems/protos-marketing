@@ -129,7 +129,7 @@ export default async function BlogPost({
                       className="aspect-square size-6 rounded-full object-cover"
                     />
                   )}
-                  <div className="text-sm/5 text-gray-700">
+                  <div className="text-sm/5 text-gray-700 dark:text-[color:var(--color-soft-gray)]">
                     {post.author.name}
                   </div>
                 </div>
@@ -140,7 +140,7 @@ export default async function BlogPost({
                     <Link
                       key={category.slug}
                       href={`/blog?category=${category.slug}`}
-                      className="rounded-full border border-dotted border-gray-300 bg-gray-50 px-2 text-sm/6 font-medium text-gray-500"
+                      className="rounded-full border border-dotted border-gray-300 bg-gray-50 px-2 text-sm/6 font-medium text-gray-500 dark:border-white/15 dark:bg-white/5 dark:text-[color:var(--color-slate-100)]"
                     >
                       {category.title}
                     </Link>
@@ -153,7 +153,7 @@ export default async function BlogPost({
                     <Link
                       key={tag.slug}
                       href={`/blog/tags/${tag.slug}`}
-                      className="rounded-full border border-dotted border-gray-300 bg-gray-50 px-2 text-sm/6 font-medium text-gray-500"
+                      className="rounded-full border border-dotted border-gray-300 bg-gray-50 px-2 text-sm/6 font-medium text-gray-500 dark:border-white/15 dark:bg-white/5 dark:text-[color:var(--color-slate-100)]"
                     >
                       #{tag.title}
                     </Link>
@@ -161,7 +161,7 @@ export default async function BlogPost({
                 </div>
               )}
             </div>
-            <div className="text-gray-700">
+            <div className="text-gray-700 dark:text-[color:var(--color-soft-gray)]">
               <div className="max-w-2xl xl:mx-auto">
                 {post.mainImage && (
                   <img
@@ -195,17 +195,17 @@ export default async function BlogPost({
                           </p>
                         ),
                         h2: ({ children }) => (
-                          <h2 className="mt-12 mb-10 text-2xl/8 font-medium tracking-tight text-gray-950 first:mt-0 last:mb-0">
+                          <h2 className="mt-12 mb-10 text-2xl/8 font-medium tracking-tight text-gray-950 first:mt-0 last:mb-0 dark:text-white">
                             {children}
                           </h2>
                         ),
                         h3: ({ children }) => (
-                          <h3 className="mt-12 mb-10 text-xl/8 font-medium tracking-tight text-gray-950 first:mt-0 last:mb-0">
+                          <h3 className="mt-12 mb-10 text-xl/8 font-medium tracking-tight text-gray-950 first:mt-0 last:mb-0 dark:text-white">
                             {children}
                           </h3>
                         ),
                         blockquote: ({ children }) => (
-                          <blockquote className="my-10 border-l-2 border-l-gray-300 pl-6 text-base/8 text-gray-950 first:mt-0 last:mb-0">
+                          <blockquote className="my-10 border-l-2 border-l-gray-300 pl-6 text-base/8 text-gray-950 first:mt-0 last:mb-0 dark:border-l-white/20 dark:text-white">
                             {children}
                           </blockquote>
                         ),
@@ -222,7 +222,7 @@ export default async function BlogPost({
                           switch (value.style) {
                             case 'line':
                               return (
-                                <hr className="my-8 border-t border-gray-200" />
+                                <hr className="my-8 border-t border-gray-200 dark:border-white/10" />
                               )
                             case 'space':
                               return <div className="my-8" />
@@ -233,12 +233,12 @@ export default async function BlogPost({
                       },
                       list: {
                         bullet: ({ children }) => (
-                          <ul className="list-disc pl-4 text-base/8 marker:text-gray-400">
+                          <ul className="list-disc pl-4 text-base/8 marker:text-gray-400 dark:marker:text-white/40">
                             {children}
                           </ul>
                         ),
                         number: ({ children }) => (
-                          <ol className="list-decimal pl-4 text-base/8 marker:text-gray-400">
+                          <ol className="list-decimal pl-4 text-base/8 marker:text-gray-400 dark:marker:text-white/40">
                             {children}
                           </ol>
                         ),
@@ -261,14 +261,14 @@ export default async function BlogPost({
                       },
                       marks: {
                         strong: ({ children }) => (
-                          <strong className="font-semibold text-gray-950">
+                          <strong className="font-semibold text-gray-950 dark:text-white">
                             {children}
                           </strong>
                         ),
                         code: ({ children }) => (
                           <>
                             <span aria-hidden>`</span>
-                            <code className="text-[15px]/8 font-semibold text-gray-950">
+                            <code className="text-[15px]/8 font-semibold text-gray-950 dark:text-white">
                               {children}
                             </code>
                             <span aria-hidden>`</span>
@@ -278,7 +278,7 @@ export default async function BlogPost({
                           return (
                             <Link
                               href={value.href}
-                              className="font-medium text-gray-950 underline decoration-gray-400 underline-offset-4 data-hover:decoration-gray-600"
+                              className="font-medium text-gray-950 underline decoration-gray-400 underline-offset-4 data-hover:decoration-gray-600 dark:text-[color:var(--color-slate-100)] dark:decoration-white/40 dark:data-hover:decoration-white/70"
                             >
                               {children}
                             </Link>

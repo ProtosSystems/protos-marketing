@@ -109,7 +109,7 @@ function Hero() {
             </Button>
             <Link
               href="https://docs.arche.fi"
-              className="inline-flex items-center text-base font-normal text-[color:var(--color-primary)] data-hover:text-[color:var(--color-deep-steel-blue)]"
+              className="inline-flex items-center text-base font-normal text-[color:var(--color-primary)] data-hover:text-[color:var(--color-deep-steel-blue)] dark:text-white dark:data-hover:text-[color:var(--color-slate-100)]"
             >
               Explore Arche →
             </Link>

@@ -19,7 +19,7 @@ export function Heading({
       data-dark={dark ? 'true' : undefined}
       className={clsx(
         className,
-        'text-4xl font-medium tracking-tighter text-pretty text-[color:var(--color-primary)] data-dark:text-[color:var(--color-primary)] sm:text-6xl',
+        'text-4xl font-medium tracking-tighter text-pretty text-[color:var(--color-primary)] dark:text-white data-dark:text-[color:var(--color-primary)] sm:text-6xl',
       )}
     />
   )
@@ -37,7 +37,7 @@ export function Subheading({
       data-dark={dark ? 'true' : undefined}
       className={clsx(
         className,
-        'font-mono text-xs/5 font-semibold tracking-widest text-[color:var(--color-primary)] uppercase data-dark:text-[color:var(--color-slate-100)]',
+        'font-mono text-xs/5 font-semibold tracking-widest text-[color:var(--color-primary)] uppercase dark:text-[color:var(--color-slate-100)] data-dark:text-[color:var(--color-slate-100)]',
       )}
     />
   )
@@ -49,7 +49,7 @@ export function Lead({
 }: React.ComponentPropsWithoutRef<'p'>) {
   return (
     <p
-      className={clsx(className, 'text-2xl font-medium text-gray-500')}
+      className={clsx(className, 'text-2xl font-medium text-gray-500 dark:text-[color:var(--color-soft-gray)]')}
       {...props}
     />
   )

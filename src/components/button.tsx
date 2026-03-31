@@ -16,14 +16,14 @@ const variants = {
     'after:absolute after:inset-0 after:rounded-full after:shadow-[inset_0_0_2px_1px_#ffffff4d]',
     'text-base font-medium whitespace-nowrap text-[color:var(--color-primary)]',
     'data-disabled:bg-white/70 data-disabled:opacity-40 data-hover:bg-white/85',
-    'dark:bg-white/10 dark:text-white dark:data-hover:bg-white/20',
+    'dark:bg-white/12 dark:text-white dark:ring-white/20 dark:data-hover:bg-white/18',
   ),
   outline: clsx(
     'inline-flex items-center justify-center px-2 py-[calc(--spacing(1.5)-1px)]',
     'rounded-lg border border-transparent shadow-sm ring-1 ring-[color:var(--color-primary)]/15',
     'text-sm font-medium whitespace-nowrap text-[color:var(--color-primary)]',
     'data-disabled:bg-transparent data-disabled:opacity-40 data-hover:bg-[color:var(--color-soft-gray)]',
-    'dark:text-white dark:data-hover:bg-white/10',
+    'dark:text-white dark:ring-white/20 dark:data-hover:bg-white/10',
   ),
 }
 

@@ -51,20 +51,20 @@ async function Categories({ selected }: { selected?: string }) {
   return (
     <div className="flex flex-wrap items-center justify-between gap-2">
       <Menu>
-        <MenuButton className="flex items-center justify-between gap-2 font-medium">
+        <MenuButton className="flex items-center justify-between gap-2 font-medium text-[color:var(--color-primary)] dark:text-white">
           {categories.find(({ slug }) => slug === selected)?.title ||
             'All categories'}
-          <ChevronUpDownIcon className="size-4 fill-gray-900" />
+          <ChevronUpDownIcon className="size-4 fill-[color:var(--color-primary)] dark:fill-white" />
         </MenuButton>
         <MenuItems
           anchor="bottom start"
-          className="min-w-40 rounded-lg bg-white p-1 shadow-lg ring-1 ring-gray-200 [--anchor-gap:6px] [--anchor-offset:-4px] [--anchor-padding:10px]"
+          className="min-w-40 rounded-lg bg-white p-1 text-[color:var(--color-primary)] shadow-lg ring-1 ring-gray-200 [--anchor-gap:6px] [--anchor-offset:-4px] [--anchor-padding:10px] dark:bg-[#16233b] dark:text-white dark:ring-white/10"
         >
           <MenuItem>
             <Link
               href="/blog"
               data-selected={selected === undefined ? true : undefined}
-              className="group grid grid-cols-[1rem_1fr] items-center gap-2 rounded-md px-2 py-1 data-focus:bg-gray-950/5"
+              className="group grid grid-cols-[1rem_1fr] items-center gap-2 rounded-md px-2 py-1 data-focus:bg-gray-950/5 dark:data-focus:bg-white/10"
             >
               <CheckIcon className="hidden size-4 group-data-selected:block" />
               <p className="col-start-2 text-sm/6">All categories</p>
@@ -78,7 +78,7 @@ async function Categories({ selected }: { selected?: string }) {
                 <Link
                   href={`/blog?category=${category.slug}`}
                   data-selected={category.slug === selected ? true : undefined}
-                  className="group grid grid-cols-[16px_1fr] items-center gap-2 rounded-md px-2 py-1 data-focus:bg-gray-950/5"
+                  className="group grid grid-cols-[16px_1fr] items-center gap-2 rounded-md px-2 py-1 data-focus:bg-gray-950/5 dark:data-focus:bg-white/10"
                 >
                   <CheckIcon className="hidden size-4 group-data-selected:block" />
                   <p className="col-start-2 text-sm/6">{category.title}</p>
@@ -113,7 +113,7 @@ async function Posts({ page, category }: { page: number; category?: string }) {
   }
 
   if (posts.length === 0) {
-    return <p className="mt-6 text-gray-700">No posts found.</p>
+    return <p className="mt-6 text-gray-700 dark:text-[color:var(--color-soft-gray)]">No posts found.</p>
   }
 
   return (
@@ -129,7 +129,7 @@ async function Posts({ page, category }: { page: number; category?: string }) {
       }) => (
         <article
           key={post.slug}
-          className="grid grid-cols-1 border-b border-b-gray-200 py-10 max-sm:gap-3 sm:grid-cols-3"
+          className="grid grid-cols-1 border-b border-b-gray-200 py-10 max-sm:gap-3 sm:grid-cols-3 dark:border-b-white/10"
         >
           <div>
             <p className="text-sm/5 font-medium text-gray-900 dark:text-white">
@@ -238,10 +238,10 @@ async function Pagination({
             href={url(i + 1)}
             data-active={i + 1 === page ? true : undefined}
             className={clsx(
-              'size-7 rounded-lg text-center text-sm/7 font-medium',
-              'data-hover:bg-gray-100',
-              'data-active:shadow-sm data-active:ring-1 data-active:ring-black/10',
-              'data-active:data-hover:bg-gray-50',
+              'size-7 rounded-lg text-center text-sm/7 font-medium text-[color:var(--color-primary)] dark:text-white',
+              'data-hover:bg-gray-100 dark:data-hover:bg-white/10',
+              'data-active:shadow-sm data-active:ring-1 data-active:ring-black/10 dark:data-active:ring-white/15',
+              'data-active:data-hover:bg-gray-50 dark:data-active:data-hover:bg-white/12',
             )}
           >
             {i + 1}
