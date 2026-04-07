@@ -80,7 +80,6 @@ export function Navbar({ banner }: { banner?: React.ReactNode }) {
       as="header"
       className="relative bg-gray-100 pt-12 sm:pt-16 dark:bg-[color:var(--color-primary)]"
     >
-      <div className="pointer-events-none absolute inset-x-1/2 bottom-0 h-px w-screen -translate-x-1/2 bg-[color:var(--color-soft-gray)] dark:bg-white/10" />
       <Container>
         <div className="relative flex items-center justify-between">
           <div className="relative flex gap-6">
