@@ -104,8 +104,11 @@ export function ArcheOrbitVisual() {
         <div className="relative flex h-48 w-48 items-center justify-center">
           <div className="rounded-full p-1 ring-1 ring-black/10">
             <div className="relative z-10 flex size-20 items-center justify-center rounded-full bg-white shadow-[inset_0px_-15px_20px_rgba(0,0,0,0.1),0_7px_10px_0_rgba(0,0,0,0.15)] ring-1 ring-black/20 dark:bg-[color:var(--color-primary)] dark:ring-white/15">
-              <span className="h3 font-regular text-2xl tracking-tight text-[color:var(--color-primary)] dark:text-white">
-                arche
+              <span
+                title="arche"
+                className="h3 font-regular text-2xl tracking-tight text-[color:var(--color-primary)] dark:text-white"
+              >
+                ⍺rche
               </span>
             </div>
             <div className="absolute inset-12 animate-[spin_8s_linear_infinite] rounded-full bg-linear-to-t from-transparent via-[#0B1F3B]/40 to-transparent blur-lg dark:via-white/25" />
