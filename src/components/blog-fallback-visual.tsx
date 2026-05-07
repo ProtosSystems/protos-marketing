@@ -14,12 +14,28 @@ const TIMELINE_VISUAL_SLUGS = new Set([
   'why-deterministic-financial-data-matters',
 ])
 
+type BlogFallbackImage = {
+  alt: string
+  src: string
+}
+
+const FALLBACK_IMAGES_BY_SLUG: Record<string, BlogFallbackImage> = {
+  'point-in-time-financial-data-the-missing-contract-in-financial-apis': {
+    alt: 'What was knowable at a specific point in time?',
+    src: '/blog/point-in-time-question-v2.svg',
+  },
+}
+
 export function usesWhyArcheExistsVisual(slug: string) {
   return WHY_ARCHE_EXISTS_VISUAL_SLUGS.has(slug)
 }
 
 export function usesTimelineVisual(slug: string) {
   return TIMELINE_VISUAL_SLUGS.has(slug)
+}
+
+export function getFallbackImageForSlug(slug: string) {
+  return FALLBACK_IMAGES_BY_SLUG[slug]
 }
 
 export function BlogFallbackVisual({
@@ -29,15 +45,17 @@ export function BlogFallbackVisual({
   slug: string
   compact?: boolean
 }) {
+  const fallbackImage = getFallbackImageForSlug(slug)
+
   if (WHY_ARCHE_EXISTS_VISUAL_SLUGS.has(slug)) {
     return <WhyArcheExistsDiagram className="w-full" />
   }
 
-  if (QUESTION_VISUAL_SLUGS.has(slug)) {
+  if (QUESTION_VISUAL_SLUGS.has(slug) && fallbackImage) {
     return (
       <img
-        alt="What was knowable at a specific point in time?"
-        src="/blog/point-in-time-question.svg"
+        alt={fallbackImage.alt}
+        src={fallbackImage.src}
         className="h-full w-full object-cover"
       />
     )

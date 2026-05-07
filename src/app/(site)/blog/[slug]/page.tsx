@@ -1,6 +1,7 @@
 import { Button } from '@/components/button'
 import {
   BlogFallbackVisual,
+  getFallbackImageForSlug,
   usesTimelineVisual,
 } from '@/components/blog-fallback-visual'
 import { Container } from '@/components/container'
@@ -25,9 +26,12 @@ export async function generateMetadata({
   if (!post) return {}
 
   const canonicalPath = `/blog/${post.slug}`
+  const fallbackImage = getFallbackImageForSlug(post.slug)
   const socialImage = post.mainImage
     ? image(post.mainImage).size(1200, 630).format('jpg').url()
-    : `${SITE_URL}/protos-og.png`
+    : fallbackImage
+      ? `${SITE_URL}${fallbackImage.src}`
+      : `${SITE_URL}/protos-og.png`
 
   return {
     title: post.title,
@@ -67,6 +71,7 @@ export default async function BlogPost({
   let { data: post } = await getPost((await params).slug)
   if (!post) notFound()
   const canonicalUrl = `${SITE_URL}/blog/${post.slug}`
+  const fallbackImage = getFallbackImageForSlug(post.slug)
   const articleLd = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
@@ -95,7 +100,9 @@ export default async function BlogPost({
     },
     image: post.mainImage
       ? image(post.mainImage).size(1200, 630).format('jpg').url()
-      : `${SITE_URL}/protos-og.png`,
+      : fallbackImage
+        ? `${SITE_URL}${fallbackImage.src}`
+        : `${SITE_URL}/protos-og.png`,
     mainEntityOfPage: canonicalUrl,
   }
 

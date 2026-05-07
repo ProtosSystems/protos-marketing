@@ -1,4 +1,5 @@
 import { image } from '@/sanity/image'
+import { getFallbackImageForSlug } from '@/components/blog-fallback-visual'
 import { getPostsForFeed } from '@/sanity/queries'
 import { Feed } from 'feed'
 import assert from 'node:assert'
@@ -38,17 +39,20 @@ export async function GET(req: Request) {
     }
 
     feed.addItem({
+      image:
+        post.mainImage
+          ? image(post.mainImage)
+              .size(1200, 800)
+              .format('jpg')
+              .url()
+              .replaceAll('&', '&amp;')
+          : getFallbackImageForSlug(post.slug)
+            ? `${siteUrl}${getFallbackImageForSlug(post.slug)?.src}`
+            : undefined,
       title: post.title,
       id: post.slug,
       link: `${siteUrl}/blog/${post.slug}`,
       content: post.excerpt,
-      image: post.mainImage
-        ? image(post.mainImage)
-            .size(1200, 800)
-            .format('jpg')
-            .url()
-            .replaceAll('&', '&amp;')
-        : undefined,
       author: post.author?.name ? [{ name: post.author.name }] : [],
       contributor: post.author?.name ? [{ name: post.author.name }] : [],
       date: new Date(post.publishedAt),
