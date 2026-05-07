@@ -6,9 +6,12 @@ const WHY_ARCHE_EXISTS_VISUAL_SLUGS = new Set([
   'how-arche-handles-financial-restatements',
 ])
 
+const QUESTION_VISUAL_SLUGS = new Set([
+  'point-in-time-financial-data-the-missing-contract-in-financial-apis',
+])
+
 const TIMELINE_VISUAL_SLUGS = new Set([
   'why-deterministic-financial-data-matters',
-  'point-in-time-financial-data-the-missing-contract-in-financial-apis',
 ])
 
 export function usesWhyArcheExistsVisual(slug: string) {
@@ -28,6 +31,16 @@ export function BlogFallbackVisual({
 }) {
   if (WHY_ARCHE_EXISTS_VISUAL_SLUGS.has(slug)) {
     return <WhyArcheExistsDiagram className="w-full" />
+  }
+
+  if (QUESTION_VISUAL_SLUGS.has(slug)) {
+    return (
+      <img
+        alt="What was knowable at a specific point in time?"
+        src="/blog/point-in-time-question.svg"
+        className="h-full w-full object-cover"
+      />
+    )
   }
 
   if (TIMELINE_VISUAL_SLUGS.has(slug)) {

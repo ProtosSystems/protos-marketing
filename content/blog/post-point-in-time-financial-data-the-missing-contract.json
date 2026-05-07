@@ -1,0 +1,1025 @@
+{
+  "_id": "post-point-in-time-financial-data-the-missing-contract",
+  "_type": "post",
+  "title": "Point-in-Time Financial Data: The Missing Contract in Financial APIs",
+  "slug": {
+    "_type": "slug",
+    "current": "point-in-time-financial-data-the-missing-contract-in-financial-apis"
+  },
+  "publishedAt": "2026-05-06T21:57:31Z",
+  "isFeatured": false,
+  "author": {
+    "_type": "reference",
+    "_ref": "author-kevin-downey"
+  },
+  "categories": [
+    {
+      "_type": "reference",
+      "_ref": "category-data-research",
+      "_key": "category-data-research"
+    }
+  ],
+  "tags": [
+    {
+      "_type": "reference",
+      "_ref": "tag-financial-data",
+      "_key": "tag-financial-data"
+    },
+    {
+      "_type": "reference",
+      "_ref": "tag-point-in-time",
+      "_key": "tag-point-in-time"
+    },
+    {
+      "_type": "reference",
+      "_ref": "tag-restatements",
+      "_key": "tag-restatements"
+    },
+    {
+      "_type": "reference",
+      "_ref": "tag-data-lineage",
+      "_key": "tag-data-lineage"
+    },
+    {
+      "_type": "reference",
+      "_ref": "tag-api",
+      "_key": "tag-api"
+    },
+    {
+      "_type": "reference",
+      "_ref": "tag-datasets",
+      "_key": "tag-datasets"
+    }
+  ],
+  "excerpt": "Most financial APIs answer what a number is now. Historical systems need a stricter contract: what was actually knowable at a specific point in time.",
+  "body": [
+    {
+      "_type": "block",
+      "_key": "b1",
+      "style": "normal",
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b1s1",
+          "text": "Financial data APIs usually answer one question well:",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b2",
+      "style": "blockquote",
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b2s1",
+          "text": "What is the value now?",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b3",
+      "style": "normal",
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b3s1",
+          "text": "That is useful, but it is not enough for systems that depend on historical correctness.",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b4",
+      "style": "normal",
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b4s1",
+          "text": "For backtesting, model training, financial research, and audit workflows, the more important question is often:",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b5",
+      "style": "blockquote",
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b5s1",
+          "text": "What was knowable at a specific point in time?",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b6",
+      "style": "normal",
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b6s1",
+          "text": "That distinction matters because financial disclosures are not static. Companies amend filings. Statements get restated. Historical values can change after the fact. If a dataset overwrites old values with newer ones, it may look cleaner, but it also destroys the historical context needed to reproduce past decisions.",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b7",
+      "style": "normal",
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b7s1",
+          "text": "That is a problem for any system that relies on financial data as infrastructure.",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b8",
+      "style": "h2",
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b8s1",
+          "text": "The Hidden Problem in Historical Financial Data",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b9",
+      "style": "normal",
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b9s1",
+          "text": "Most financial datasets are optimized for convenience. They give you the latest available version of a company’s financials, often normalized into a clean structure that is easy to query.",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b10",
+      "style": "normal",
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b10s1",
+          "text": "For some workflows, that is fine. If you are looking at a company today and want the latest normalized financials, current-state data may be enough.",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b11",
+      "style": "normal",
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b11s1",
+          "text": "Historical analysis is different. A backtest, financial model, or automated research system needs to know what information was available at the time the analysis is supposed to represent. If the system accidentally uses data that was revised later, the result may look valid while quietly depending on information from the future.",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b12",
+      "style": "normal",
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b12s1",
+          "text": "That is look-ahead bias.",
+          "marks": [
+            "strong"
+          ]
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b13",
+      "style": "normal",
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b13s1",
+          "text": "Imagine a company files annual financial statements in 2023, then later amends or restates part of those financials in 2025. If your dataset overwrites the 2023 values with the 2025 restated values, a backtest running against “2023 data” may now be using numbers that were not actually available in 2023.",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b14",
+      "style": "normal",
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b14s1",
+          "text": "The query still runs. The data still looks clean. The model may even perform well. But the result is no longer historically accurate.",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b15",
+      "style": "h2",
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b15s1",
+          "text": "Why This Breaks Backtests and Models",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b16",
+      "style": "normal",
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b16s1",
+          "text": "Financial models depend on the integrity of their inputs. If historical data changes silently, several things become difficult or impossible:",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b17",
+      "style": "normal",
+      "listItem": "bullet",
+      "level": 1,
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b17s1",
+          "text": "Reproducing a backtest months later",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b18",
+      "style": "normal",
+      "listItem": "bullet",
+      "level": 1,
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b18s1",
+          "text": "Explaining why a model made a historical decision",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b19",
+      "style": "normal",
+      "listItem": "bullet",
+      "level": 1,
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b19s1",
+          "text": "Verifying whether a signal used information available at the time",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b20",
+      "style": "normal",
+      "listItem": "bullet",
+      "level": 1,
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b20s1",
+          "text": "Auditing financial inputs used in production",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b21",
+      "style": "normal",
+      "listItem": "bullet",
+      "level": 1,
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b21s1",
+          "text": "Comparing research results across different dataset versions",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b22",
+      "style": "normal",
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b22s1",
+          "text": "This becomes more serious as financial systems become more automated. AI agents, machine learning pipelines, and quantitative research systems do not just need financial data. They need financial data with a clear contract around time, source, and revision history.",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b23",
+      "style": "normal",
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b23s1",
+          "text": "A clean number is not enough. A reliable system needs to know where the number came from, when it became available, and whether it was later revised.",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b24",
+      "style": "h2",
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b24s1",
+          "text": "The Point-in-Time Contract",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b25",
+      "style": "normal",
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b25s1",
+          "text": "A point-in-time financial data system should preserve the historical state of financial disclosures instead of collapsing everything into the latest version.",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b26",
+      "style": "normal",
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b26s1",
+          "text": "That means a query should be able to answer:",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b27",
+      "style": "blockquote",
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b27s1",
+          "text": "Give me this company’s financials as they were known on March 31, 2023.",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b28",
+      "style": "normal",
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b28s1",
+          "text": "Not just:",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b29",
+      "style": "blockquote",
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b29s1",
+          "text": "Give me the latest financials for this company.",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b30",
+      "style": "normal",
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b30s1",
+          "text": "That difference is the contract. A proper point-in-time system should preserve:",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b31",
+      "style": "normal",
+      "listItem": "bullet",
+      "level": 1,
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b31s1",
+          "text": "The source filing",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b32",
+      "style": "normal",
+      "listItem": "bullet",
+      "level": 1,
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b32s1",
+          "text": "The filing date",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b33",
+      "style": "normal",
+      "listItem": "bullet",
+      "level": 1,
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b33s1",
+          "text": "The reporting period",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b34",
+      "style": "normal",
+      "listItem": "bullet",
+      "level": 1,
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b34s1",
+          "text": "The statement version",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b35",
+      "style": "normal",
+      "listItem": "bullet",
+      "level": 1,
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b35s1",
+          "text": "The revision or restatement history",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b36",
+      "style": "normal",
+      "listItem": "bullet",
+      "level": 1,
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b36s1",
+          "text": "The date the information became publicly available",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b37",
+      "style": "normal",
+      "listItem": "bullet",
+      "level": 1,
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b37s1",
+          "text": "The financial state knowable at the requested query date",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b38",
+      "style": "normal",
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b38s1",
+          "text": "Without that context, historical financial data becomes ambiguous. You may know what the number is today, but you may not know whether that number existed when your model, strategy, or decision was supposed to have used it.",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b39",
+      "style": "h2",
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b39s1",
+          "text": "Why Arche Was Built This Way",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b40",
+      "style": "normal",
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b40s1",
+          "text": "Arche was designed around deterministic financial data from SEC EDGAR filings. Instead of treating financial statements as a single flattened dataset, Arche preserves filing lineage, restatement history, and point-in-time correctness. The goal is not only to provide structured financial data, but to make that data reproducible for software systems.",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b41",
+      "style": "normal",
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b41s1",
+          "text": "That means Arche is built to support questions like:",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b42",
+      "style": "normal",
+      "listItem": "bullet",
+      "level": 1,
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b42s1",
+          "text": "What did this company report in its original filing?",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b43",
+      "style": "normal",
+      "listItem": "bullet",
+      "level": 1,
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b43s1",
+          "text": "Was this statement later amended or restated?",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b44",
+      "style": "normal",
+      "listItem": "bullet",
+      "level": 1,
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b44s1",
+          "text": "What financial data was knowable as of a specific date?",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b45",
+      "style": "normal",
+      "listItem": "bullet",
+      "level": 1,
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b45s1",
+          "text": "Which filing produced this value?",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b46",
+      "style": "normal",
+      "listItem": "bullet",
+      "level": 1,
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b46s1",
+          "text": "Can this historical result be reproduced later?",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b47",
+      "style": "normal",
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b47s1",
+          "text": "Those questions matter for developers building systems where financial data is not just displayed, but used as an input into research, automation, or decision-making.",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b48",
+      "style": "h2",
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b48s1",
+          "text": "Clean Data Is Not the Same as Truthful Data",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b49",
+      "style": "normal",
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b49s1",
+          "text": "A financial data provider can make data look clean by smoothing inconsistencies, recomputing values, or replacing old records with newer ones. That may produce a simpler dataset. It may also hide reality.",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b50",
+      "style": "normal",
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b50s1",
+          "text": "For historical workflows, the better goal is not always to make every number look perfect. The better goal is to expose what was actually filed, what changed, and what was knowable at the time.",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b51",
+      "style": "normal",
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b51s1",
+          "text": "That is especially important when building systems for:",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b52",
+      "style": "normal",
+      "listItem": "bullet",
+      "level": 1,
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b52s1",
+          "text": "Quantitative research",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b53",
+      "style": "normal",
+      "listItem": "bullet",
+      "level": 1,
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b53s1",
+          "text": "Backtesting",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b54",
+      "style": "normal",
+      "listItem": "bullet",
+      "level": 1,
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b54s1",
+          "text": "AI financial agents",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b55",
+      "style": "normal",
+      "listItem": "bullet",
+      "level": 1,
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b55s1",
+          "text": "Model validation",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b56",
+      "style": "normal",
+      "listItem": "bullet",
+      "level": 1,
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b56s1",
+          "text": "Compliance workflows",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b57",
+      "style": "normal",
+      "listItem": "bullet",
+      "level": 1,
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b57s1",
+          "text": "Internal financial data infrastructure",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b58",
+      "style": "normal",
+      "listItem": "bullet",
+      "level": 1,
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b58s1",
+          "text": "Developer platforms built on regulatory data",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b59",
+      "style": "normal",
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b59s1",
+          "text": "These systems need more than normalized financial statements. They need a durable record of financial truth over time.",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b60",
+      "style": "h2",
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b60s1",
+          "text": "Financial Data Infrastructure Needs Memory",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b61",
+      "style": "normal",
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b61s1",
+          "text": "The core issue is simple: financial data changes. A system that forgets those changes cannot reliably support historical analysis. A system that preserves them can.",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b62",
+      "style": "normal",
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b62s1",
+          "text": "That is why point-in-time correctness is not a feature bolted onto a financial API. It is part of the foundation.",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b63",
+      "style": "normal",
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b63s1",
+          "text": "As more financial software becomes automated, reproducible data becomes more important. Developers need APIs that do not just return numbers, but preserve the context required to trust those numbers.",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b64",
+      "style": "normal",
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b64s1",
+          "text": "Arche is being built for that purpose. We are currently working with early access users building research systems, financial data pipelines, and AI-native financial applications where historical correctness matters.",
+          "marks": []
+        }
+      ]
+    },
+    {
+      "_type": "block",
+      "_key": "b65",
+      "style": "normal",
+      "markDefs": [
+        {
+          "_key": "cta-link",
+          "_type": "link",
+          "href": "https://arche.fi/request-access"
+        }
+      ],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "b65s1",
+          "text": "If your system depends on reproducible financial data, request access at arche.fi/request-access.",
+          "marks": [
+            "cta-link"
+          ]
+        }
+      ]
+    }
+  ]
+}
