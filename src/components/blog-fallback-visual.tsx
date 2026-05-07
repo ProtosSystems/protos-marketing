@@ -8,6 +8,7 @@ const WHY_ARCHE_EXISTS_VISUAL_SLUGS = new Set([
 
 const TIMELINE_VISUAL_SLUGS = new Set([
   'why-deterministic-financial-data-matters',
+  'point-in-time-financial-data-the-missing-contract-in-financial-apis',
 ])
 
 export function usesWhyArcheExistsVisual(slug: string) {
