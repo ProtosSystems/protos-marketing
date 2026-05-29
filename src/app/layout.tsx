@@ -43,12 +43,12 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-      { url: '/favicon.ico', type: 'image/x-icon' },
+      { url: '/favicon-16x16.png?v=2', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png?v=2', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon.ico?v=2', type: 'image/x-icon' },
     ],
-    apple: [{ url: '/apple-touch-icon.png', sizes: '180x180' }],
-    shortcut: ['/favicon.ico'],
+    apple: [{ url: '/apple-touch-icon.png?v=2', sizes: '180x180' }],
+    shortcut: ['/favicon.ico?v=2'],
   },
   manifest: '/site.webmanifest',
   ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
@@ -96,7 +96,7 @@ export default function RootLayout({
         </Script>
         <link
           rel="stylesheet"
-          href="https://api.fontshare.com/css?f%5B%5D=switzer@400,500,600,700&amp;display=swap"
+          href="https://api.fontshare.com/css?f%5B%5D=switzer@300,400,500,600,700&amp;display=swap"
         />
         <link
           rel="alternate"
@@ -104,10 +104,6 @@ export default function RootLayout({
           title="The Protos Systems Blog"
           href="/blog/feed.xml"
         />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-        <link rel="manifest" href="/site.webmanifest" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationLd) }}

@@ -7,6 +7,7 @@ import {
 } from '@headlessui/react'
 import { Bars2Icon } from '@heroicons/react/24/solid'
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import { Container } from './container'
 import { Link } from './link'
 import { ThemeToggle } from './theme-toggle'
@@ -84,9 +85,17 @@ export function Navbar({ banner }: { banner?: React.ReactNode }) {
         <div className="relative flex items-center justify-between">
           <div className="relative flex gap-6">
             <div className="py-3">
-              <Link href="/" title="Home">
-                <span className="h3 text-2xl font-regular tracking-tight text-[color:var(--color-primary)] dark:text-white">
-                  protos systems
+              <Link href="/" title="Home" className="flex items-center gap-0">
+                <Image
+                  src="/protos-logo.png"
+                  alt="Protos Systems logo"
+                  width={72}
+                  height={72}
+                  className="dark:invert"
+                />
+                <span className="h3 text-2xl tracking-tight text-[color:var(--color-primary)] dark:text-white">
+                  <span className="font-medium">Protos</span>{' '}
+                  <span className="font-medium">Systems</span>
                 </span>
               </Link>
             </div>
