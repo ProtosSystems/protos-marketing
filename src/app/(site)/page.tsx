@@ -82,7 +82,38 @@ const foundationFeatures = [
 
 function Hero() {
   return (
-    <div className="relative border-b border-[color:var(--color-soft-gray)] bg-gray-100 dark:border-white/10 dark:bg-[color:var(--color-primary)]">
+    <div className="relative isolate overflow-hidden bg-gray-100 dark:bg-[color:var(--color-primary)] border-b border-[color:var(--color-soft-gray)] dark:border-white/10">
+      <svg
+        aria-hidden="true"
+        className="absolute inset-x-0 top-0 -z-10 h-full w-full mask-[radial-gradient(38rem_38rem_at_center,white,transparent)] stroke-gray-300 dark:stroke-white/10"
+      >
+        <defs>
+          <pattern
+            x="50%"
+            y={-1}
+            id="hero-grid"
+            width={200}
+            height={200}
+            patternUnits="userSpaceOnUse"
+          >
+            <path d="M.5 200V.5H200" fill="none" />
+          </pattern>
+        </defs>
+        <svg x="50%" y={-1} className="overflow-visible fill-gray-50 dark:fill-gray-800">
+          <path
+            d="M-200 0h201v201h-201Z M600 0h201v201h-201Z M-400 600h201v201h-201Z M200 800h201v201h-201Z"
+            strokeWidth={0}
+          />
+        </svg>
+        <rect fill="url(#hero-grid)" width="100%" height="100%" strokeWidth={0} />
+      </svg>
+      {/* Centered gray gradient bloom */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 -z-10 flex items-center justify-center transform-gpu"
+      >
+        <div className="h-96 w-96 rounded-full bg-gray-300 opacity-40 blur-3xl dark:bg-gray-600" />
+      </div>
       <Container className="relative">
         <div className="pt-16 pb-24 sm:pt-24 sm:pb-32 md:pt-32 md:pb-32">
           <div className="mb-6">
@@ -94,7 +125,7 @@ function Hero() {
               <ChevronRightIcon className="size-4" />
             </Link>
           </div>
-          <h1 className="font-display text-4xl/[0.9] font-normal tracking-tight text-balance text-[color:var(--color-primary)] dark:text-white sm:text-6xl/[0.8] md:text-7xl/[0.8]">
+          <h1 className="font-display text-4xl/[1.05] font-normal tracking-tight text-balance text-[color:var(--color-primary)] dark:text-white sm:text-6xl/[1.0] md:text-7xl/[1.0]">
             <span className="block pb-1">Financial data infrastructure,</span>
             <span className="block">built from first principles.</span>
           </h1>
