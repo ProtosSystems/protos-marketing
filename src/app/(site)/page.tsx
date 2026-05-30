@@ -107,6 +107,11 @@ function Hero() {
         </svg>
         <rect fill="url(#hero-grid)" width="100%" height="100%" strokeWidth={0} />
       </svg>
+      {/* Bottom fade for grid pattern */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 bottom-0 -z-10 h-32 bg-gradient-to-t from-gray-100 to-transparent dark:from-[color:var(--color-primary)] dark:to-transparent"
+      />
       {/* Centered gray gradient bloom */}
       <div
         aria-hidden="true"
