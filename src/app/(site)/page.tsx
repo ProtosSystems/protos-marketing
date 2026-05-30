@@ -85,7 +85,7 @@ function Hero() {
     <div className="relative isolate overflow-hidden bg-gray-100 dark:bg-[color:var(--color-primary)] border-b border-[color:var(--color-soft-gray)] dark:border-white/10">
       <svg
         aria-hidden="true"
-        className="absolute inset-x-0 top-0 -z-10 h-full w-full mask-[radial-gradient(38rem_38rem_at_center,white,transparent)] stroke-gray-300 dark:stroke-white/10"
+        className="absolute -inset-x-4 top-0 -z-10 h-full w-[calc(100%+2rem)] mask-[radial-gradient(55rem_44rem_at_center,white,transparent)] stroke-gray-300 dark:stroke-white/10"
       >
         <defs>
           <pattern
@@ -158,7 +158,7 @@ function WorkflowSection() {
         <div className="grid grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:grid-cols-2">
           <div className="lg:pt-4 lg:pr-8">
             <div className="lg:max-w-lg">
-              <h2 className="text-base/7 font-semibold text-[color:var(--color-deep-steel-blue)] dark:text-[color:var(--color-slate-100)]">
+              <h2 className="font-mono text-xs/5 font-normal tracking-widest uppercase text-gray-700 dark:text-[color:var(--color-soft-gray)]">
                 Introducing Arche
               </h2>
               <p className="mt-2 text-4xl font-normal tracking-tight text-pretty text-[color:var(--color-primary)] sm:text-5xl dark:text-white">
@@ -200,7 +200,7 @@ function FoundationSection() {
     <div className="bg-white pt-0 pb-24 sm:pb-32 dark:bg-[color:var(--color-primary)]">
       <Container>
         <div className="max-w-2xl">
-          <h2 className="text-base/7 font-semibold text-[color:var(--color-deep-steel-blue)] dark:text-[color:var(--color-slate-100)]">
+          <h2 className="font-mono text-xs/5 font-normal tracking-widest uppercase text-gray-700 dark:text-[color:var(--color-soft-gray)]">
             Foundation, not feeds
           </h2>
           <p className="mt-2 text-4xl font-normal tracking-tight text-pretty text-[color:var(--color-primary)] sm:text-5xl dark:text-white">
