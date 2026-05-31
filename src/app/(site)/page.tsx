@@ -83,29 +83,38 @@ const foundationFeatures = [
 function Hero() {
   return (
     <div className="relative isolate overflow-hidden bg-gray-100 dark:bg-[color:var(--color-primary)] border-b border-[color:var(--color-soft-gray)] dark:border-white/10">
+      {/* Topographic contour lines — concentric ellipses from off-screen upper-right peak, guaranteed non-crossing */}
       <svg
         aria-hidden="true"
-        className="absolute -inset-x-4 top-0 -z-10 h-full w-[calc(100%+2rem)] mask-[radial-gradient(55rem_44rem_at_center,white,transparent)] stroke-gray-300 dark:stroke-white/10"
+        className="pointer-events-none absolute inset-0 h-full w-full"
+        viewBox="0 0 1200 500"
+        preserveAspectRatio="xMidYMid slice"
+        fill="none"
+        style={{
+          maskImage: 'linear-gradient(to bottom, transparent 0%, white 15%, white 85%, transparent 100%)',
+          opacity: 0.52,
+        }}
       >
         <defs>
-          <pattern
-            x="50%"
-            y={-1}
-            id="hero-grid"
-            width={200}
-            height={200}
-            patternUnits="userSpaceOnUse"
-          >
-            <path d="M.5 200V.5H200" fill="none" />
-          </pattern>
+          <filter id="topo-warp" x="-20%" y="-20%" width="140%" height="140%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.008 0.012" numOctaves="3" seed="8" result="noise" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="28" xChannelSelector="R" yChannelSelector="G" />
+          </filter>
         </defs>
-        <svg x="50%" y={-1} className="overflow-visible fill-gray-50 dark:fill-gray-800">
-          <path
-            d="M-200 0h201v201h-201Z M600 0h201v201h-201Z M-400 600h201v201h-201Z M200 800h201v201h-201Z"
-            strokeWidth={0}
-          />
-        </svg>
-        <rect fill="url(#hero-grid)" width="100%" height="100%" strokeWidth={0} />
+        <g filter="url(#topo-warp)" transform="rotate(-12, 820, -60)">
+          {Array.from({ length: 70 }, (_, i) => (
+            <ellipse
+              key={i}
+              cx={820}
+              cy={-60}
+              rx={60 + i * 22}
+              ry={44 + i * 16}
+              stroke="white"
+              strokeWidth="0.8"
+              fill="none"
+            />
+          ))}
+        </g>
       </svg>
       {/* Bottom fade for grid pattern */}
       <div
