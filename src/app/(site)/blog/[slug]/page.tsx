@@ -285,7 +285,7 @@ export default async function BlogPost({
                           return (
                             <Link
                               href={value.href}
-                              className="font-medium text-gray-950 underline decoration-gray-400 underline-offset-4 data-hover:decoration-gray-600 dark:text-[color:var(--color-slate-100)] dark:decoration-white/40 dark:data-hover:decoration-white/70"
+                              className="font-medium text-gray-950 underline decoration-gray-400 underline-offset-4 hover:decoration-gray-600 dark:text-[color:var(--color-slate-100)] dark:decoration-white/40 dark:hover:decoration-white/70"
                             >
                               {children}
                             </Link>

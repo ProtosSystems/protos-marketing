@@ -24,7 +24,7 @@ function DesktopNav() {
         <div key={href} className="relative flex">
           <Link
             href={href}
-            className="flex items-center px-4 py-3 text-base font-normal text-gray-950 bg-blend-multiply data-hover:bg-black/2.5 dark:text-white dark:data-hover:bg-white/10"
+            className="flex items-center px-4 py-3 text-base font-normal text-gray-950 bg-blend-multiply hover:bg-black/2.5 dark:text-white dark:hover:bg-white/10"
           >
             {label}
           </Link>
@@ -37,7 +37,7 @@ function DesktopNav() {
 function MobileNavButton() {
   return (
     <DisclosureButton
-      className="flex size-12 items-center justify-center self-center rounded-lg text-gray-950 data-hover:bg-black/5 dark:text-white dark:data-hover:bg-white/10 lg:hidden"
+      className="flex size-12 items-center justify-center self-center rounded-lg text-gray-950 hover:bg-black/5 dark:text-white dark:hover:bg-white/10 lg:hidden"
       aria-label="Open main menu"
     >
       <Bars2Icon className="size-6" />

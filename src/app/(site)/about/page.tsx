@@ -76,7 +76,7 @@ export default function AboutPage() {
             <div className="max-w-4xl">
               <Link
                 href="/blog"
-                className="inline-flex items-center gap-2 rounded-full bg-gray-200 px-3 py-1 text-sm/6 font-normal text-[color:var(--color-charcoal)] data-hover:bg-gray-300 dark:bg-white/10 dark:text-white dark:data-hover:bg-white/15"
+                className="inline-flex items-center gap-2 rounded-full bg-gray-200 px-3 py-1 text-sm/6 font-normal text-[color:var(--color-charcoal)] hover:bg-gray-300 dark:bg-white/10 dark:text-white dark:hover:bg-white/15"
               >
                 <NewspaperIcon className="size-4" />
                 Keep up to date about Protos Systems

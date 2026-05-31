@@ -239,9 +239,9 @@ async function Pagination({
             data-active={i + 1 === page ? true : undefined}
             className={clsx(
               'size-7 rounded-lg text-center text-sm/7 font-medium text-[color:var(--color-primary)] dark:text-white',
-              'data-hover:bg-gray-100 dark:data-hover:bg-white/10',
+              'hover:bg-gray-100 dark:hover:bg-white/10',
               'data-active:shadow-sm data-active:ring-1 data-active:ring-black/10 dark:data-active:ring-white/15',
-              'data-active:data-hover:bg-gray-50 dark:data-active:data-hover:bg-white/12',
+              'data-active:hover:bg-gray-50 dark:data-active:hover:bg-white/12',
             )}
           >
             {i + 1}

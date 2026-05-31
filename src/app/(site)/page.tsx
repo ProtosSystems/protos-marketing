@@ -124,7 +124,7 @@ function Hero() {
           <div className="mb-6">
             <Link
               href="/blog/introducing-arche-deterministic-edgar-intelligence-for-developers"
-              className="inline-flex items-center gap-1 rounded-full bg-gray-200 px-3 py-0.5 text-sm/6 font-normal text-[color:var(--color-charcoal)] data-hover:bg-gray-300 dark:bg-white/10 dark:text-white dark:data-hover:bg-white/15"
+              className="inline-flex items-center gap-1 rounded-full bg-gray-200 px-3 py-0.5 text-sm/6 font-normal text-[color:var(--color-charcoal)] hover:bg-gray-300 dark:bg-white/10 dark:text-white dark:hover:bg-white/15"
             >
               Introducing Arche
               <ChevronRightIcon className="size-4" />
@@ -145,7 +145,7 @@ function Hero() {
             </Button>
             <Link
               href="https://docs.arche.fi"
-              className="inline-flex items-center text-base font-normal text-[color:var(--color-primary)] data-hover:text-[color:var(--color-deep-steel-blue)] dark:text-white dark:data-hover:text-[color:var(--color-slate-100)]"
+              className="inline-flex items-center text-base font-normal text-[color:var(--color-primary)] hover:text-[color:var(--color-deep-steel-blue)] dark:text-white dark:hover:text-[color:var(--color-slate-100)]"
             >
               Explore Arche →
             </Link>
