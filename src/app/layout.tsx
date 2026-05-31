@@ -109,7 +109,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationLd) }}
         />
       </head>
-      <body className="bg-white text-[color:var(--color-charcoal)] antialiased dark:bg-[color:var(--color-protos-navy)] dark:text-white">
+      <body className="bg-[color:var(--color-protos-navy)] text-white antialiased">
         {children}
         <Analytics />
         <SanityLive revalidateSyncTags={revalidateSyncTags} />
