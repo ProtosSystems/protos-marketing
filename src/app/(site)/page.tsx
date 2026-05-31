@@ -93,19 +93,19 @@ function Hero() {
         style={{
           WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)',
           maskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)',
-          opacity: 0.35,
+          opacity: 0.5,
         }}
       >
-        <g transform="rotate(-12, 820, -60)">
+        <g transform="rotate(-8, 900, -600)">
           {Array.from({ length: 70 }, (_, i) => (
             <ellipse
               key={i}
-              cx={820}
-              cy={-60}
-              rx={60 + i * 22}
-              ry={44 + i * 16}
-              stroke="#6b7280"
-              strokeWidth="1"
+              cx={900}
+              cy={-600}
+              rx={500 + i * 28}
+              ry={380 + i * 20}
+              stroke="#9ca3af"
+              strokeWidth="0.75"
               fill="none"
             />
           ))}
