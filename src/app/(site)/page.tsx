@@ -80,6 +80,62 @@ const foundationFeatures = [
   },
 ]
 
+// Marching squares — genuine topographic isolines of a 2D height field
+const TOPO_SEGS: string = (() => {
+  const W = 1200, H = 520
+  const COLS = 100, ROWS = 44
+  const cw = W / COLS, ch = H / ROWS
+
+  const field = (x: number, y: number) =>
+    Math.sin(x * 0.0020 + y * 0.0028) * 140 +
+    Math.sin(x * 0.0038 - y * 0.0022 + 2.0) * 90 +
+    Math.sin(x * 0.0012 + y * 0.0050 + 1.1) * 70 +
+    Math.sin(x * 0.0055 + y * 0.0015 + 3.5) * 40
+
+  const grid: number[][] = Array.from({ length: ROWS + 1 }, (_, iy) =>
+    Array.from({ length: COLS + 1 }, (_, ix) => field(ix * cw, iy * ch))
+  )
+
+  let lo = Infinity, hi = -Infinity
+  for (const row of grid) for (const v of row) {
+    if (v < lo) lo = v
+    if (v > hi) hi = v
+  }
+
+  const LEVELS = 55
+  const parts: string[] = []
+
+  for (let l = 0; l < LEVELS; l++) {
+    const lv = lo + (l / (LEVELS - 1)) * (hi - lo)
+    for (let iy = 0; iy < ROWS; iy++) {
+      for (let ix = 0; ix < COLS; ix++) {
+        const x0 = ix * cw, y0 = iy * ch
+        const x1 = x0 + cw, y1 = y0 + ch
+        const a = grid[iy][ix], b = grid[iy][ix + 1]
+        const c = grid[iy + 1][ix + 1], d = grid[iy + 1][ix]
+        const E = (a > lv ? 8 : 0) | (b > lv ? 4 : 0) | (c > lv ? 2 : 0) | (d > lv ? 1 : 0)
+        if (E === 0 || E === 15) continue
+        const li = (va: number, vb: number, pa: number, pb: number) =>
+          (pa + (pb - pa) * (lv - va) / (vb - va)).toFixed(1)
+        const top    = `${li(a, b, x0, x1)},${y0.toFixed(1)}`
+        const right  = `${x1.toFixed(1)},${li(b, c, y0, y1)}`
+        const bottom = `${li(d, c, x0, x1)},${y1.toFixed(1)}`
+        const left   = `${x0.toFixed(1)},${li(a, d, y0, y1)}`
+        const s = (p: string, q: string) => `M${p}L${q}`
+        if      (E===1||E===14) parts.push(s(left,bottom))
+        else if (E===2||E===13) parts.push(s(bottom,right))
+        else if (E===3||E===12) parts.push(s(left,right))
+        else if (E===4||E===11) parts.push(s(top,right))
+        else if (E===5)         { parts.push(s(top,left)); parts.push(s(bottom,right)) }
+        else if (E===6||E===9)  parts.push(s(top,bottom))
+        else if (E===7||E===8)  parts.push(s(top,left))
+        else if (E===10)        { parts.push(s(top,right)); parts.push(s(bottom,left)) }
+      }
+    }
+  }
+  return parts.join(' ')
+})()
+
 function Hero() {
   return (
     <div className="relative isolate overflow-hidden bg-gray-100 dark:bg-[color:var(--color-primary)] border-b border-[color:var(--color-soft-gray)] dark:border-white/10">
@@ -91,31 +147,12 @@ function Hero() {
         preserveAspectRatio="xMidYMid slice"
         fill="none"
         style={{
-          WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)',
-          maskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)',
-          opacity: 0.22,
+          WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(255,255,255,1) 20%, rgba(255,255,255,0.4) 65%, rgba(255,255,255,0) 100%)',
+          maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(255,255,255,1) 20%, rgba(255,255,255,0.4) 65%, rgba(255,255,255,0) 100%)',
+          opacity: 0.35,
         }}
       >
-        <defs>
-          <filter id="topo-warp" x="-80%" y="-80%" width="260%" height="260%">
-            <feTurbulence type="fractalNoise" baseFrequency="0.002 0.003" numOctaves="3" seed="12" result="noise" />
-            <feDisplacementMap in="SourceGraphic" in2="noise" scale="180" xChannelSelector="R" yChannelSelector="G" />
-          </filter>
-        </defs>
-        <g filter="url(#topo-warp)" transform="rotate(-8, 900, -600)">
-          {Array.from({ length: 70 }, (_, i) => (
-            <ellipse
-              key={i}
-              cx={900}
-              cy={-600}
-              rx={500 + i * 28}
-              ry={380 + i * 20}
-              stroke="#c8cdd6"
-              strokeWidth="0.6"
-              fill="none"
-            />
-          ))}
-        </g>
+        <path d={TOPO_SEGS} stroke="#a0aab4" strokeWidth="0.7" fill="none" />
       </svg>
       {/* Bottom fade for grid pattern */}
       <div
