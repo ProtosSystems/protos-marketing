@@ -86,7 +86,7 @@ function Hero() {
       {/* Topographic contour lines — concentric ellipses from off-screen upper-right peak, guaranteed non-crossing */}
       <svg
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 h-full w-full"
+        className="pointer-events-none absolute inset-0 z-0 h-full w-full"
         viewBox="0 0 1200 500"
         preserveAspectRatio="xMidYMid slice"
         fill="none"
