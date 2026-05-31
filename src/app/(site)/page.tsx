@@ -153,12 +153,19 @@ function Hero() {
         aria-hidden="true"
         className="absolute inset-x-0 bottom-0 -z-10 h-32 bg-gradient-to-t from-[color:var(--color-primary)] to-transparent"
       />
-      {/* Centered gray gradient bloom */}
+      {/* Centered glow bloom — pulsing */}
+      <style>{`
+        @keyframes glow-pulse {
+          0%, 100% { opacity: 0.25; transform: scale(1); }
+          50% { opacity: 0.45; transform: scale(1.18); }
+        }
+        .hero-glow { animation: glow-pulse 4s ease-in-out infinite; }
+      `}</style>
       <div
         aria-hidden="true"
         className="absolute inset-0 -z-10 flex items-center justify-center transform-gpu"
       >
-        <div className="h-96 w-96 rounded-full bg-gray-600 opacity-30 blur-3xl" />
+        <div className="hero-glow h-96 w-96 rounded-full bg-indigo-400 blur-3xl" />
       </div>
       <Container className="relative">
         <div className="pt-16 pb-24 sm:pt-24 sm:pb-32 md:pt-32 md:pb-32">
