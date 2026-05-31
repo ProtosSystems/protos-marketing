@@ -80,60 +80,54 @@ const foundationFeatures = [
   },
 ]
 
-// Marching squares — genuine topographic isolines of a 2D height field
-const TOPO_SEGS: string = (() => {
+// Horizontal topo lines: f(x,y) = y + wave(x)
+// Isolines are y = C - wave(x) — mathematically impossible to cross, always horizontal
+const TOPO_PATHS: string[] = (() => {
   const W = 1200, H = 520
-  const COLS = 100, ROWS = 44
-  const cw = W / COLS, ch = H / ROWS
+  const LINES = 40
+  const PTS = 120 // points per line
 
-  const field = (x: number, y: number) =>
-    Math.sin(x * 0.0020 + y * 0.0028) * 140 +
-    Math.sin(x * 0.0038 - y * 0.0022 + 2.0) * 90 +
-    Math.sin(x * 0.0012 + y * 0.0050 + 1.1) * 70 +
-    Math.sin(x * 0.0055 + y * 0.0015 + 3.5) * 40
+  // Wave function — x-only, so lines stay horizontal and never cross
+  const wave = (x: number) =>
+   130 * Math.sin(x * 0.0055 + 0.4) +
+    70 * Math.sin(x * 0.0032 + 2.1) +
+    30 * Math.sin(x * 0.0088 + 1.3) +
+    15 * Math.sin(x * 0.0130 + 3.0)
 
-  const grid: number[][] = Array.from({ length: ROWS + 1 }, (_, iy) =>
-    Array.from({ length: COLS + 1 }, (_, ix) => field(ix * cw, iy * ch))
-  )
-
-  let lo = Infinity, hi = -Infinity
-  for (const row of grid) for (const v of row) {
-    if (v < lo) lo = v
-    if (v > hi) hi = v
+  // Measure wave extremes to set level range
+  let wMin = Infinity, wMax = -Infinity
+  for (let i = 0; i <= 300; i++) {
+    const v = wave((i / 300) * W)
+    if (v < wMin) wMin = v
+    if (v > wMax) wMax = v
   }
 
-  const LEVELS = 55
-  const parts: string[] = []
+  // Lines span from just above the top to just below the bottom
+  const lo = 0  + wMin
+  const hi = H + wMax
 
-  for (let l = 0; l < LEVELS; l++) {
-    const lv = lo + (l / (LEVELS - 1)) * (hi - lo)
-    for (let iy = 0; iy < ROWS; iy++) {
-      for (let ix = 0; ix < COLS; ix++) {
-        const x0 = ix * cw, y0 = iy * ch
-        const x1 = x0 + cw, y1 = y0 + ch
-        const a = grid[iy][ix], b = grid[iy][ix + 1]
-        const c = grid[iy + 1][ix + 1], d = grid[iy + 1][ix]
-        const E = (a > lv ? 8 : 0) | (b > lv ? 4 : 0) | (c > lv ? 2 : 0) | (d > lv ? 1 : 0)
-        if (E === 0 || E === 15) continue
-        const li = (va: number, vb: number, pa: number, pb: number) =>
-          (pa + (pb - pa) * (lv - va) / (vb - va)).toFixed(1)
-        const top    = `${li(a, b, x0, x1)},${y0.toFixed(1)}`
-        const right  = `${x1.toFixed(1)},${li(b, c, y0, y1)}`
-        const bottom = `${li(d, c, x0, x1)},${y1.toFixed(1)}`
-        const left   = `${x0.toFixed(1)},${li(a, d, y0, y1)}`
-        const s = (p: string, q: string) => `M${p}L${q}`
-        if      (E===1||E===14) parts.push(s(left,bottom))
-        else if (E===2||E===13) parts.push(s(bottom,right))
-        else if (E===3||E===12) parts.push(s(left,right))
-        else if (E===4||E===11) parts.push(s(top,right))
-        else if (E===5)         { parts.push(s(top,left)); parts.push(s(bottom,right)) }
-        else if (E===6||E===9)  parts.push(s(top,bottom))
-        else if (E===7||E===8)  parts.push(s(top,left))
-        else if (E===10)        { parts.push(s(top,right)); parts.push(s(bottom,left)) }
-      }
+  return Array.from({ length: LINES }, (_, l) => {
+    const C = lo + (l / (LINES - 1)) * (hi - lo)
+    const pts = Array.from({ length: PTS + 1 }, (_, j) => {
+      const x = (j / PTS) * W
+      const y = C - wave(x)
+      return [x, y] as [number, number]
+    })
+    // Catmull-Rom → cubic bezier
+    let d = `M${pts[0][0].toFixed(1)},${pts[0][1].toFixed(1)}`
+    for (let i = 0; i < pts.length - 1; i++) {
+      const p0 = pts[Math.max(0, i - 1)]
+      const p1 = pts[i]
+      const p2 = pts[i + 1]
+      const p3 = pts[Math.min(pts.length - 1, i + 2)]
+      const cp1x = p1[0] + (p2[0] - p0[0]) / 6
+      const cp1y = p1[1] + (p2[1] - p0[1]) / 6
+      const cp2x = p2[0] - (p3[0] - p1[0]) / 6
+      const cp2y = p2[1] - (p3[1] - p1[1]) / 6
+      d += `C${cp1x.toFixed(1)},${cp1y.toFixed(1)} ${cp2x.toFixed(1)},${cp2y.toFixed(1)} ${p2[0].toFixed(1)},${p2[1].toFixed(1)}`
     }
-  }
-  return parts.join(' ')
+    return d
+  })
 })()
 
 function Hero() {
@@ -152,7 +146,7 @@ function Hero() {
           opacity: 0.35,
         }}
       >
-        <path d={TOPO_SEGS} stroke="#a0aab4" strokeWidth="0.7" fill="none" />
+        <path d={TOPO_PATHS.join(' ')} stroke="#a0aab4" strokeWidth="0.7" fill="none" />
       </svg>
       {/* Bottom fade for grid pattern */}
       <div
