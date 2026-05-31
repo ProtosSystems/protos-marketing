@@ -172,7 +172,7 @@ function Hero() {
           <div className="mb-6">
             <Link
               href="/blog/introducing-arche-deterministic-edgar-intelligence-for-developers"
-              className="inline-flex items-center gap-1 rounded-full bg-white/15 px-3 py-0.5 text-sm/6 font-normal text-white/90 hover:bg-white/20"
+              className="inline-flex items-center gap-1 rounded-full bg-white/20 px-3 py-0.5 text-sm/6 font-normal text-white hover:bg-white/25"
             >
               Introducing Arche
               <ChevronRightIcon className="size-4" />
