@@ -143,10 +143,10 @@ function Hero() {
         style={{
           WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(255,255,255,1) 20%, rgba(255,255,255,0.4) 65%, rgba(255,255,255,0) 100%)',
           maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(255,255,255,1) 20%, rgba(255,255,255,0.4) 65%, rgba(255,255,255,0) 100%)',
-          opacity: 0.35,
+          opacity: 0.55,
         }}
       >
-        <path d={TOPO_PATHS.join(' ')} stroke="white" strokeWidth="0.7" fill="none" />
+        <path d={TOPO_PATHS.join(' ')} stroke="white" strokeWidth="1.2" fill="none" />
       </svg>
       {/* Bottom fade for grid pattern */}
       <div
