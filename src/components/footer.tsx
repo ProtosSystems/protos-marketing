@@ -66,7 +66,7 @@ function CallToAction() {
       </p>
       <div className="mt-6">
         <Button
-          className="w-full sm:w-auto"
+          className="w-full sm:w-auto !bg-white !text-[color:var(--color-primary)] hover:!bg-white/90"
           href="https://arche.fi/request-access"
         >
           Request Arche access
