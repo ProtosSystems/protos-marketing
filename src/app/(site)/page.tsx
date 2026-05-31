@@ -156,8 +156,8 @@ function Hero() {
       {/* Centered glow bloom — pulsing */}
       <style>{`
         @keyframes glow-pulse {
-          0%, 100% { opacity: 0.25; transform: scale(1); }
-          50% { opacity: 0.45; transform: scale(1.18); }
+          0%, 100% { opacity: 0.08; transform: scale(1); }
+          50% { opacity: 0.16; transform: scale(1.15); }
         }
         .hero-glow { animation: glow-pulse 4s ease-in-out infinite; }
       `}</style>
@@ -165,7 +165,7 @@ function Hero() {
         aria-hidden="true"
         className="absolute inset-0 -z-10 flex items-center justify-center transform-gpu"
       >
-        <div className="hero-glow h-96 w-96 rounded-full bg-indigo-400 blur-3xl" />
+        <div className="hero-glow h-96 w-96 rounded-full bg-white blur-3xl" />
       </div>
       <Container className="relative">
         <div className="pt-16 pb-24 sm:pt-24 sm:pb-32 md:pt-32 md:pb-32">
