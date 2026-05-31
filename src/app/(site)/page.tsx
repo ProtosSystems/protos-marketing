@@ -92,7 +92,7 @@ function Hero() {
         fill="none"
         style={{
           maskImage: 'linear-gradient(to bottom, transparent 0%, white 15%, white 85%, transparent 100%)',
-          opacity: 0.52,
+          opacity: 0.8,
         }}
       >
         <defs>
@@ -109,7 +109,7 @@ function Hero() {
               cy={-60}
               rx={60 + i * 22}
               ry={44 + i * 16}
-              stroke="white"
+              stroke="#c8cdd6"
               strokeWidth="0.8"
               fill="none"
             />
