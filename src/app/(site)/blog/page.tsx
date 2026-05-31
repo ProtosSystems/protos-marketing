@@ -274,16 +274,16 @@ export default async function Blog({
 
   return (
     <main>
-      <div className="relative border-b border-[color:var(--color-soft-gray)] bg-gray-100 dark:border-white/10 dark:bg-[color:var(--color-primary)]">
+      <div className="relative border-b border-white/10 bg-[color:var(--color-primary)]">
         <Container className="relative">
           <div className="pt-16 pb-24 sm:pt-24 sm:pb-28 md:pb-32">
-            <p className="text-sm/6 font-medium tracking-widest text-[color:var(--color-deep-steel-blue)] uppercase dark:text-[color:var(--color-soft-gray)]">
+            <p className="text-sm/6 font-medium tracking-widest text-white/60 uppercase">
               Blog
             </p>
-            <h1 className="mt-4 max-w-4xl text-6xl/[0.92] font-medium tracking-tight text-[color:var(--color-primary)] dark:text-white sm:text-7xl/[0.88]">
+            <h1 className="mt-4 max-w-4xl text-6xl/[0.92] font-medium tracking-tight text-white sm:text-7xl/[0.88]">
               Latest from Protos Systems
             </h1>
-            <p className="mt-6 max-w-3xl text-xl/8 text-[color:var(--color-charcoal)] dark:text-[color:var(--color-soft-gray)]">
+            <p className="mt-6 max-w-3xl text-xl/8 text-white/70">
               Product updates, technical notes, and announcements about Arche
               and deterministic financial data infrastructure.
             </p>

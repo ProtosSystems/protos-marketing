@@ -132,7 +132,7 @@ const TOPO_PATHS: string[] = (() => {
 
 function Hero() {
   return (
-    <div className="relative isolate overflow-hidden bg-gray-100 dark:bg-[color:var(--color-primary)] border-b border-[color:var(--color-soft-gray)] dark:border-white/10">
+    <div className="relative isolate overflow-hidden bg-[color:var(--color-primary)] border-b border-white/10">
       {/* Topographic contour lines */}
       <svg
         aria-hidden="true"
@@ -146,47 +146,47 @@ function Hero() {
           opacity: 0.35,
         }}
       >
-        <path d={TOPO_PATHS.join(' ')} stroke="#a0aab4" strokeWidth="0.7" fill="none" />
+        <path d={TOPO_PATHS.join(' ')} stroke="white" strokeWidth="0.7" fill="none" />
       </svg>
       {/* Bottom fade for grid pattern */}
       <div
         aria-hidden="true"
-        className="absolute inset-x-0 bottom-0 -z-10 h-32 bg-gradient-to-t from-gray-100 to-transparent dark:from-[color:var(--color-primary)] dark:to-transparent"
+        className="absolute inset-x-0 bottom-0 -z-10 h-32 bg-gradient-to-t from-[color:var(--color-primary)] to-transparent"
       />
       {/* Centered gray gradient bloom */}
       <div
         aria-hidden="true"
         className="absolute inset-0 -z-10 flex items-center justify-center transform-gpu"
       >
-        <div className="h-96 w-96 rounded-full bg-gray-300 opacity-40 blur-3xl dark:bg-gray-600" />
+        <div className="h-96 w-96 rounded-full bg-gray-600 opacity-30 blur-3xl" />
       </div>
       <Container className="relative">
         <div className="pt-16 pb-24 sm:pt-24 sm:pb-32 md:pt-32 md:pb-32">
           <div className="mb-6">
             <Link
               href="/blog/introducing-arche-deterministic-edgar-intelligence-for-developers"
-              className="inline-flex items-center gap-1 rounded-full bg-gray-200 px-3 py-0.5 text-sm/6 font-normal text-[color:var(--color-charcoal)] hover:bg-gray-300 dark:bg-white/10 dark:text-white dark:hover:bg-white/15"
+              className="inline-flex items-center gap-1 rounded-full bg-white/10 px-3 py-0.5 text-sm/6 font-normal text-white hover:bg-white/15"
             >
               Introducing Arche
               <ChevronRightIcon className="size-4" />
             </Link>
           </div>
-          <h1 className="font-display text-4xl/[1.05] font-normal tracking-tight text-balance text-[color:var(--color-primary)] dark:text-white sm:text-6xl/[1.0] md:text-7xl/[1.0]">
+          <h1 className="font-display text-4xl/[1.05] font-normal tracking-tight text-balance text-white sm:text-6xl/[1.0] md:text-7xl/[1.0]">
             <span className="block pb-1">Financial data infrastructure,</span>
             <span className="block">built from first principles.</span>
           </h1>
-          <p className="mt-8 max-w-2xl text-xl/7 font-normal text-gray-950/75 sm:text-2xl/8 dark:text-white/70">
+          <p className="mt-8 max-w-2xl text-xl/7 font-normal text-white/70 sm:text-2xl/8">
             Protos Systems builds the core infrastructure behind Arche, which
             models financial statements as versioned, auditable assertions
             instead of mutable records.
           </p>
           <div className="mt-12 flex flex-col gap-x-6 gap-y-4 sm:flex-row">
-            <Button href="https://arche.fi/request-access">
+            <Button variant="secondary" href="https://arche.fi/request-access" className="!bg-white !text-[color:var(--color-primary)] hover:!bg-white/90">
               Request Arche access
             </Button>
             <Link
               href="https://docs.arche.fi"
-              className="inline-flex items-center text-base font-normal text-[color:var(--color-primary)] hover:text-[color:var(--color-deep-steel-blue)] dark:text-white dark:hover:text-[color:var(--color-slate-100)]"
+              className="inline-flex items-center text-base font-normal text-white hover:text-white/80"
             >
               Explore Arche →
             </Link>

@@ -70,21 +70,21 @@ function Section({
 export default function AboutPage() {
   return (
     <main>
-      <div className="relative border-b border-[color:var(--color-soft-gray)] bg-gray-100 dark:border-white/10 dark:bg-[color:var(--color-primary)]">
+      <div className="relative border-b border-white/10 bg-[color:var(--color-primary)]">
         <Container className="relative">
           <div className="py-16 sm:py-24 md:py-28">
             <div className="max-w-4xl">
               <Link
                 href="/blog"
-                className="inline-flex items-center gap-2 rounded-full bg-gray-200 px-3 py-1 text-sm/6 font-normal text-[color:var(--color-charcoal)] hover:bg-gray-300 dark:bg-white/10 dark:text-white dark:hover:bg-white/15"
+                className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-sm/6 font-normal text-white hover:bg-white/15"
               >
                 <NewspaperIcon className="size-4" />
                 Keep up to date about Protos Systems
               </Link>
-              <h1 className="mt-6 text-4xl font-medium tracking-tight text-[color:var(--color-primary)] dark:text-white sm:text-6xl">
+              <h1 className="mt-6 text-4xl font-medium tracking-tight text-white sm:text-6xl">
                 About Protos Systems
               </h1>
-              <p className="mt-6 text-xl/8 text-[color:var(--color-charcoal)] dark:text-[color:var(--color-soft-gray)]">
+              <p className="mt-6 text-xl/8 text-white/70">
                 Financial data infrastructure for modern software.
               </p>
             </div>

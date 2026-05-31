@@ -112,11 +112,11 @@ export default async function BlogPost({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }}
       />
-      <div className="relative border-b border-[color:var(--color-soft-gray)] bg-gray-100 dark:border-white/10 dark:bg-[color:var(--color-primary)]">
+      <div className="relative border-b border-white/10 bg-[color:var(--color-primary)]">
         <Container className="relative">
           <div className="py-16 sm:py-20 md:py-24">
-            <Subheading>{dayjs(post.publishedAt).format('dddd, MMMM D, YYYY')}</Subheading>
-            <Heading as="h1" className="mt-2 max-w-4xl">
+            <Subheading className="!text-white/60">{dayjs(post.publishedAt).format('dddd, MMMM D, YYYY')}</Subheading>
+            <Heading as="h1" className="mt-2 max-w-4xl !text-white">
               {post.title}
             </Heading>
           </div>

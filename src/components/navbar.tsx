@@ -24,7 +24,7 @@ function DesktopNav() {
         <div key={href} className="relative flex">
           <Link
             href={href}
-            className="flex items-center px-4 py-3 text-base font-normal text-gray-950 bg-blend-multiply hover:bg-black/2.5 dark:text-white dark:hover:bg-white/10"
+            className="flex items-center px-4 py-3 text-base font-normal text-white hover:bg-white/10"
           >
             {label}
           </Link>
@@ -37,7 +37,7 @@ function DesktopNav() {
 function MobileNavButton() {
   return (
     <DisclosureButton
-      className="flex size-12 items-center justify-center self-center rounded-lg text-gray-950 hover:bg-black/5 dark:text-white dark:hover:bg-white/10 lg:hidden"
+      className="flex size-12 items-center justify-center self-center rounded-lg text-white hover:bg-white/10 lg:hidden"
       aria-label="Open main menu"
     >
       <Bars2Icon className="size-6" />
@@ -63,7 +63,7 @@ function MobileNav() {
             >
               <Link
                 href={href}
-                className="text-base font-normal text-gray-950 dark:text-white"
+                className="text-base font-normal text-white"
               >
                 {label}
               </Link>
@@ -79,7 +79,7 @@ export function Navbar({ banner }: { banner?: React.ReactNode }) {
   return (
     <Disclosure
       as="header"
-      className="relative bg-gray-100 pt-12 sm:pt-16 dark:bg-[color:var(--color-primary)]"
+      className="relative bg-[color:var(--color-primary)] pt-12 sm:pt-16"
     >
       <Container>
         <div className="relative flex items-center justify-between">
@@ -91,9 +91,9 @@ export function Navbar({ banner }: { banner?: React.ReactNode }) {
                   alt="Protos Systems logo"
                   width={72}
                   height={72}
-                  className="dark:invert"
+                  className="invert"
                 />
-                <span className="h3 text-2xl tracking-tight text-[color:var(--color-primary)] dark:text-white">
+                <span className="h3 text-2xl tracking-tight text-white">
                   <span className="font-medium">Protos</span>{' '}
                   <span className="font-medium">Systems</span>
                 </span>

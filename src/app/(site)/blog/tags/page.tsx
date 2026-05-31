@@ -21,13 +21,13 @@ export default async function BlogTagsPage() {
 
   return (
     <main>
-      <div className="relative border-b border-[color:var(--color-soft-gray)] bg-gray-100 dark:border-white/10 dark:bg-[color:var(--color-primary)]">
+      <div className="relative border-b border-white/10 bg-[color:var(--color-primary)]">
         <Container className="relative">
           <div className="py-16 sm:py-20 md:py-24">
-            <h1 className="text-5xl/[0.95] font-medium tracking-tight text-[color:var(--color-primary)] dark:text-white sm:text-6xl/[0.9]">
+            <h1 className="text-5xl/[0.95] font-medium tracking-tight text-white sm:text-6xl/[0.9]">
               Tags
             </h1>
-            <p className="mt-4 max-w-2xl text-base/7 text-gray-700 dark:text-[color:var(--color-soft-gray)]">
+            <p className="mt-4 max-w-2xl text-base/7 text-white/70">
               Controlled tag taxonomy for engineering and data infrastructure
               topics.
             </p>
