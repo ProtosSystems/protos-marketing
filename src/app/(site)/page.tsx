@@ -83,7 +83,7 @@ const foundationFeatures = [
 function Hero() {
   return (
     <div className="relative isolate overflow-hidden bg-gray-100 dark:bg-[color:var(--color-primary)] border-b border-[color:var(--color-soft-gray)] dark:border-white/10">
-      {/* Topographic contour lines — concentric ellipses from off-screen upper-right peak, guaranteed non-crossing */}
+      {/* Topographic contour lines */}
       <svg
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 z-0 h-full w-full"
@@ -91,17 +91,12 @@ function Hero() {
         preserveAspectRatio="xMidYMid slice"
         fill="none"
         style={{
-          maskImage: 'linear-gradient(to bottom, transparent 0%, white 15%, white 85%, transparent 100%)',
-          opacity: 0.8,
+          WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)',
+          maskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)',
+          opacity: 0.35,
         }}
       >
-        <defs>
-          <filter id="topo-warp" x="-20%" y="-20%" width="140%" height="140%">
-            <feTurbulence type="fractalNoise" baseFrequency="0.008 0.012" numOctaves="3" seed="8" result="noise" />
-            <feDisplacementMap in="SourceGraphic" in2="noise" scale="28" xChannelSelector="R" yChannelSelector="G" />
-          </filter>
-        </defs>
-        <g filter="url(#topo-warp)" transform="rotate(-12, 820, -60)">
+        <g transform="rotate(-12, 820, -60)">
           {Array.from({ length: 70 }, (_, i) => (
             <ellipse
               key={i}
@@ -109,8 +104,8 @@ function Hero() {
               cy={-60}
               rx={60 + i * 22}
               ry={44 + i * 16}
-              stroke="#c8cdd6"
-              strokeWidth="0.8"
+              stroke="#6b7280"
+              strokeWidth="1"
               fill="none"
             />
           ))}
