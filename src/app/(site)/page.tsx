@@ -98,8 +98,8 @@ function Hero() {
       >
         <defs>
           <filter id="topo-warp" x="-40%" y="-40%" width="180%" height="180%">
-            <feTurbulence type="fractalNoise" baseFrequency="0.0025 0.004" numOctaves="3" seed="12" result="noise" />
-            <feDisplacementMap in="SourceGraphic" in2="noise" scale="90" xChannelSelector="R" yChannelSelector="G" />
+            <feTurbulence type="fractalNoise" baseFrequency="0.002 0.003" numOctaves="3" seed="12" result="noise" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="180" xChannelSelector="R" yChannelSelector="G" />
           </filter>
         </defs>
         <g filter="url(#topo-warp)" transform="rotate(-8, 900, -600)">
