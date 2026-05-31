@@ -91,12 +91,18 @@ function Hero() {
         preserveAspectRatio="xMidYMid slice"
         fill="none"
         style={{
-          WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)',
-          maskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)',
-          opacity: 0.5,
+          WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)',
+          maskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)',
+          opacity: 0.22,
         }}
       >
-        <g transform="rotate(-8, 900, -600)">
+        <defs>
+          <filter id="topo-warp" x="-40%" y="-40%" width="180%" height="180%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.0025 0.004" numOctaves="3" seed="12" result="noise" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="90" xChannelSelector="R" yChannelSelector="G" />
+          </filter>
+        </defs>
+        <g filter="url(#topo-warp)" transform="rotate(-8, 900, -600)">
           {Array.from({ length: 70 }, (_, i) => (
             <ellipse
               key={i}
@@ -104,8 +110,8 @@ function Hero() {
               cy={-600}
               rx={500 + i * 28}
               ry={380 + i * 20}
-              stroke="#9ca3af"
-              strokeWidth="0.75"
+              stroke="#c8cdd6"
+              strokeWidth="0.6"
               fill="none"
             />
           ))}
