@@ -87,12 +87,24 @@ const TOPO_PATHS: string[] = (() => {
   const LINES = 40
   const PTS = 120 // points per line
 
-  // Wave function — x-only, so lines stay horizontal and never cross
-  const wave = (x: number) =>
-   130 * Math.sin(x * 0.0055 + 0.4) +
-    70 * Math.sin(x * 0.0032 + 2.1) +
-    30 * Math.sin(x * 0.0088 + 1.3) +
-    15 * Math.sin(x * 0.0130 + 3.0)
+  // Wave function — contour lines of a data distribution surface (Gaussian peaks)
+  const wave = (x: number) => {
+    const g = (mu: number, sigma: number, amp: number) =>
+      amp * Math.exp(-((x - mu) ** 2) / (2 * sigma ** 2))
+
+    const peaks =
+      g(150,  180, 190) +   // far-left cluster
+      g(500,  200, 245) +   // left-centre dominant peak
+      g(820,  130, 130) +   // smaller saddle peak
+      g(1050, 210, 200) +   // right cluster
+      g(350,  110,  95)     // secondary left shoulder
+
+    const texture =
+      6 * Math.sin(x * 0.0412 + 0.9) +
+      3 * Math.sin(x * 0.0763 + 2.1)
+
+    return peaks + texture
+  }
 
   // Measure wave extremes to set level range
   let wMin = Infinity, wMax = -Infinity
@@ -141,8 +153,10 @@ function Hero() {
         preserveAspectRatio="xMidYMid slice"
         fill="none"
         style={{
-          WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(255,255,255,1) 20%, rgba(255,255,255,0.4) 65%, rgba(255,255,255,0) 100%)',
-          maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(255,255,255,1) 20%, rgba(255,255,255,0.4) 65%, rgba(255,255,255,0) 100%)',
+          WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(255,255,255,1) 20%, rgba(255,255,255,0.4) 65%, rgba(255,255,255,0) 100%), linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(255,255,255,1) 15%, rgba(255,255,255,1) 85%, rgba(255,255,255,0) 100%)',
+          WebkitMaskComposite: 'destination-in',
+          maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(255,255,255,1) 20%, rgba(255,255,255,0.4) 65%, rgba(255,255,255,0) 100%), linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(255,255,255,1) 15%, rgba(255,255,255,1) 85%, rgba(255,255,255,0) 100%)',
+          maskComposite: 'intersect',
           opacity: 0.22,
         }}
       >
