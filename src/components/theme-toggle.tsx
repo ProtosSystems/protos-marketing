@@ -9,11 +9,9 @@ const LABELS: Record<string, string> = { system: "Auto (system)", dark: "Dark mo
 
 function SystemIcon() {
   return (
-    <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden="true">
-      <path
-        fill="currentColor"
-        d="M12 3a9 9 0 1 0 0 18A9 9 0 0 0 12 3Zm0 2a7 7 0 0 1 6.93 6H17a5 5 0 0 0-5-5V4.07c0 .01 0 .01 0 0Zm0 0v1.07A5 5 0 0 0 7 11H5.07A7 7 0 0 1 12 5Zm-7 7h1.07A5 5 0 0 0 11 17.93V19A7 7 0 0 1 5 12Zm7 7v-1.07A5 5 0 0 0 17 13h1.93A7 7 0 0 1 12 19Z"
-      />
+    <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2" y="3" width="20" height="14" rx="2" />
+      <path d="M8 21h8M12 17v4" />
     </svg>
   )
 }
