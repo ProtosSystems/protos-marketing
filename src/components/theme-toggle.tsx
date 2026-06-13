@@ -67,7 +67,7 @@ export function ThemeToggle() {
       className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white transition hover:border-white/40 hover:bg-white/10"
       onClick={() => setTheme(next)}
     >
-      {current === "dark" ? <SunIcon /> : current === "light" ? <MoonIcon /> : <SystemIcon />}
+      {next === "dark" ? <MoonIcon /> : next === "light" ? <SunIcon /> : <SystemIcon />}
     </button>
   )
 }
