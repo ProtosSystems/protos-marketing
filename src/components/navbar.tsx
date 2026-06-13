@@ -91,7 +91,7 @@ export function Navbar({ banner }: { banner?: React.ReactNode }) {
                   alt="Protos Systems logo"
                   width={72}
                   height={72}
-                  className="invert"
+                  className=""
                 />
                 <span className="h3 text-2xl tracking-tight text-white">
                   <span className="font-medium">Protos</span>{' '}
